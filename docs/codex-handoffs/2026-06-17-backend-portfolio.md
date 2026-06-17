@@ -43,6 +43,11 @@
   - reduced bottom metrics to clearer portfolio facts: public repos, backend projects, main contribution, project domains
   - removed the duplicated `Review Focus` action block
   - kept the progress-bar UI but changed its caption to the key review axes
+- Applied typography and stack update:
+  - switched site typography to Pretendard and removed the top runtime status dot
+  - increased UI text sizes slightly across terminal header, body copy, stack rows, logs, side rows, metrics, and footer
+  - expanded the Stack section from 6 items to 14 TanTan/Atlas-backed backend technologies
+  - added local SVG icons for security, JWT, JPA, WebSocket/STOMP, gateway, OpenAPI, Docker/Kubernetes, and S3/File Service
 
 ## QA Notes
 
@@ -67,7 +72,11 @@
   - no duplicate `Portfolio Target` / `Source Profile` strings should remain
   - stack items should remain unboxed
   - progress caption should read as a backend review axis, not a generic portfolio scope
+- Latest typography/stack cleanup verified:
+  - Stack shows 14 non-duplicative items, with 3 columns on desktop, 2 columns around 819px, and 1 column on narrow mobile
+  - added SVG icons parse successfully and load without broken images
+  - increased text sizes do not introduce horizontal overflow at 1440px, 819px, or 390px
 
 ## Resume Prompt
 
-Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Backend Portfolio direction, keep stack icons loaded from local SVG assets, keep the stack unboxed, keep the bottom credit as plain text rather than a divided footer row, and verify with Codex in-app browser before handoff.
+Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Backend Portfolio direction, keep stack icons loaded from local SVG assets, keep the expanded stack unboxed and non-duplicative, keep the bottom credit as plain text rather than a divided footer row, and verify with Codex in-app browser before handoff.
