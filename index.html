@@ -231,38 +231,39 @@
 
       .stack-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 26px;
         margin-top: 10px;
       }
 
       .stack-item {
         display: grid;
-        grid-template-columns: 30px 1fr;
+        grid-template-columns: 28px 1fr;
         align-items: center;
         min-width: 0;
-        gap: 9px;
-        min-height: 39px;
-        padding: 4px 8px;
-        border: 1px solid rgba(209, 223, 204, 0.13);
+        gap: 10px;
+        min-height: 36px;
+        padding: 5px 0;
+        border: 0;
+        border-bottom: 1px solid rgba(209, 223, 204, 0.12);
         border-radius: 0;
-        background: rgba(255, 255, 255, 0.032);
+        background: transparent;
       }
 
       .stack-logo {
         display: grid;
         place-items: center;
-        width: 30px;
-        height: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 24px;
+        height: 24px;
+        border: 0;
         border-radius: 0;
-        background: rgba(248, 255, 245, 0.88);
+        background: transparent;
       }
 
       .stack-logo img {
         display: block;
-        width: 21px;
-        height: 21px;
+        width: 20px;
+        height: 20px;
         object-fit: contain;
       }
 
@@ -271,7 +272,7 @@
         overflow: hidden;
         color: var(--text);
         font-family: var(--mono);
-        font-size: 11px;
+        font-size: 12px;
         line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -282,7 +283,7 @@
         overflow: hidden;
         color: var(--muted);
         font-family: var(--mono);
-        font-size: 9px;
+        font-size: 10px;
         line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -298,7 +299,7 @@
         border-left: 1px solid var(--line-strong);
       }
 
-      .objective-list {
+      .focus-list {
         display: grid;
         gap: 12px;
         margin: 0;
@@ -307,38 +308,26 @@
         font-family: var(--mono);
       }
 
-      .objective {
+      .focus-item {
         display: grid;
-        grid-template-columns: 20px 1fr auto;
-        align-items: center;
-        gap: 12px;
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
         min-width: 0;
         color: var(--text-soft);
-        font-size: 15px;
+        font-size: 13px;
+        line-height: 1.55;
       }
 
-      .objective.dim {
-        color: var(--muted);
-      }
-
-      .box {
-        display: grid;
-        place-items: center;
-        width: 17px;
-        height: 17px;
-        border: 1px solid var(--line-strong);
+      .focus-project {
         color: var(--green);
-        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
       }
 
-      .objective.current .box {
-        border-color: var(--text);
-        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.08);
-      }
-
-      .objective-status {
-        color: var(--muted);
-        font-size: 11px;
+      .focus-desc {
+        min-width: 0;
+        overflow-wrap: anywhere;
       }
 
       .tabbar {
@@ -407,45 +396,6 @@
         padding: 18px 0 18px 22px;
       }
 
-      .endpoint-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .endpoint {
-        min-width: 0;
-        padding: 0 20px 15px 0;
-      }
-
-      .endpoint + .endpoint {
-        padding-left: 22px;
-        border-left: 1px solid var(--line);
-      }
-
-      .endpoint dt {
-        color: var(--green);
-        font-family: var(--mono);
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .endpoint dd {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 16px;
-        margin: 8px 0 0;
-        color: var(--text);
-        font-family: var(--mono);
-        font-size: clamp(18px, 1.7vw, 22px);
-        line-height: 1.25;
-        word-break: break-word;
-      }
-
       .state {
         color: var(--green);
         font-family: var(--mono);
@@ -455,7 +405,6 @@
       }
 
       .log-block {
-        padding-top: 16px;
         font-family: var(--mono);
       }
 
@@ -474,7 +423,7 @@
 
       .log-line {
         display: grid;
-        grid-template-columns: minmax(88px, 0.18fr) 104px 1fr;
+        grid-template-columns: minmax(86px, 0.16fr) 130px 1fr;
         gap: 15px;
         min-width: 0;
         color: var(--text-soft);
@@ -614,7 +563,7 @@
 
       .metrics {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
       }
@@ -651,74 +600,8 @@
         font-size: 11px;
       }
 
-      .sparkline {
-        width: 108px;
-        height: 20px;
-        margin-top: 4px;
-        color: var(--green);
-      }
-
-      .runtime-actions {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 18px;
-        padding: 16px clamp(22px, 3vw, 44px) 0;
-        font-family: var(--mono);
-      }
-
-      .ask-box {
-        min-width: 0;
-      }
-
-      .ask-label {
-        color: var(--text-soft);
-        font-size: 13px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .ask-field {
-        display: flex;
-        align-items: center;
-        min-height: 46px;
-        margin-top: 8px;
-        padding: 0 18px;
-        border: 1px solid rgba(209, 223, 204, 0.14);
-        background: rgba(255, 255, 255, 0.055);
-        color: var(--muted);
-        font-size: 14px;
-        overflow-wrap: anywhere;
-      }
-
-      .quick-actions {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        align-content: end;
-        gap: 9px;
-      }
-
-      .command-button {
-        min-height: 31px;
-        padding: 0 12px;
-        border: 1px solid var(--line-strong);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.02);
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 12px;
-        cursor: pointer;
-        transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
-      }
-
-      .command-button:hover {
-        color: var(--text);
-        border-color: var(--green);
-        transform: translateY(-1px);
-      }
-
       .progress-section {
-        padding: 14px clamp(22px, 3vw, 44px) 0;
+        padding: 18px clamp(22px, 3vw, 44px) 0;
         font-family: var(--mono);
       }
 
@@ -813,13 +696,6 @@
           border-right: 0;
         }
 
-        .runtime-actions {
-          grid-template-columns: 1fr;
-        }
-
-        .quick-actions {
-          justify-content: flex-start;
-        }
       }
 
       @media (max-width: 720px) {
@@ -854,30 +730,15 @@
           grid-template-columns: 1fr 1fr;
         }
 
-        .objective {
-          grid-template-columns: 20px 1fr;
-        }
-
-        .objective-status {
-          display: none;
-        }
-
-        .endpoint-grid,
         .api-row,
         .node-card,
-        .build-row {
+        .build-row,
+        .focus-item {
           grid-template-columns: 1fr;
         }
 
-        .endpoint + .endpoint {
-          padding-top: 18px;
-          padding-left: 0;
-          border-top: 1px solid var(--line);
-          border-left: 0;
-        }
-
         .log-line {
-          grid-template-columns: 82px 76px 1fr;
+          grid-template-columns: 1fr;
           gap: 8px;
           font-size: 11px;
         }
@@ -942,10 +803,10 @@
         <header class="terminal-top">
           <div class="prompt">
             <span class="prompt-caret">&gt;</span>
-            <span>iamxoghks@portfolio:~$ inspect --backend</span>
+            <span>iamxoghks@portfolio:~$ backend --review</span>
           </div>
           <div class="runtime-title">
-            <span>Backend Evidence Console</span>
+            <span>Backend Portfolio</span>
             <span class="runtime-dot" aria-hidden="true"></span>
           </div>
         </header>
@@ -1019,27 +880,19 @@
           </div>
 
           <div class="objectives">
-            <div class="terminal-label">Backend Signals</div>
-            <ul class="objective-list">
-              <li class="objective">
-                <span class="box">✓</span>
-                <span>Spring API와 인증 경계 설계</span>
-                <span class="objective-status">auth</span>
+            <div class="terminal-label">Backend Work</div>
+            <ul class="focus-list">
+              <li class="focus-item">
+                <span class="focus-project">TanTan</span>
+                <span class="focus-desc">Spring Security/JWT 인증, Redis 세션·ZSet 캐시, Elasticsearch 검색 정합성, WebSocket 채팅 구독 구조를 다뤘습니다.</span>
               </li>
-              <li class="objective">
-                <span class="box">✓</span>
-                <span>Redis 캐시·세션 전략</span>
-                <span class="objective-status">cache</span>
+              <li class="focus-item">
+                <span class="focus-project">Atlas</span>
+                <span class="focus-desc">SCM 발주·재고·출하·반품 흐름을 도메인 단위로 정리하고 API Gateway, 서비스 경계, Swagger 문서화를 적용했습니다.</span>
               </li>
-              <li class="objective current">
-                <span class="box"></span>
-                <span>Elasticsearch 검색 정합성</span>
-                <span class="objective-status">search</span>
-              </li>
-              <li class="objective dim">
-                <span class="box"></span>
-                <span>SCM·예약 도메인 모델링</span>
-                <span class="objective-status">domain</span>
+              <li class="focus-item">
+                <span class="focus-project">MHiT</span>
+                <span class="focus-desc">야구 예매와 셔틀 예약을 ERD로 모델링하고, 중복 예약과 잔여 좌석 검증을 SQL 쿼리·프로시저로 처리했습니다.</span>
               </li>
             </ul>
           </div>
@@ -1056,55 +909,23 @@
           <section class="tab-panel active" id="panel-terminal">
             <div class="terminal-grid">
               <div class="main-console">
-                <dl class="endpoint-grid">
-                  <div class="endpoint">
-                    <dt>Portfolio Target</dt>
-                    <dd>
-                      <span>github.io/iamxoghks</span>
-                      <span class="state">GitHub Pages</span>
-                    </dd>
-                  </div>
-                  <div class="endpoint">
-                    <dt>Source Profile</dt>
-                    <dd>
-                      <span>github.com/iamxoghks</span>
-                      <span class="state">10 public repos</span>
-                    </dd>
-                  </div>
-                </dl>
-
                 <div class="log-block">
-                  <div class="log-title">Backend Evidence / 프로젝트 근거</div>
+                  <div class="log-title">Representative Work / 기술 적용 요약</div>
                   <div class="log-lines">
                     <div class="log-line">
                       <span class="log-time">TanTan BE</span>
-                      <span class="log-level">[DOMAIN]</span>
-                      <span class="log-msg">지도 기반 헬스장 탐색, 예약, 1:1 상담 채팅, 운동 기록 백엔드</span>
-                    </div>
-                    <div class="log-line">
-                      <span class="log-time">TanTan BE</span>
-                      <span class="log-level">[CACHE]</span>
-                      <span class="log-msg">Refresh Token TTL, 세션 무효화, ZSet 기반 팔로우/즐겨찾기 정렬</span>
-                    </div>
-                    <div class="log-line">
-                      <span class="log-time">TanTan BE</span>
-                      <span class="log-level">[SEARCH]</span>
-                      <span class="log-msg">게시글 저장과 Elasticsearch 색인 정합성을 Outbox 패턴으로 보강</span>
+                      <span class="log-level">[AUTH/CACHE/SEARCH]</span>
+                      <span class="log-msg">헬스장 탐색 서비스에서 JWT 인증과 Redis TTL 세션을 구성하고, ZSet으로 팔로우·즐겨찾기 정렬 조회를 줄였습니다. 검색은 Elasticsearch와 Outbox 패턴으로 DB 저장과 색인 정합성을 맞췄습니다.</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">Atlas BE</span>
-                      <span class="log-level">[SCM]</span>
-                      <span class="log-msg">발주·재고·출하·반품·정산을 하나의 SCM 업무 흐름으로 연결</span>
-                    </div>
-                    <div class="log-line">
-                      <span class="log-time">Atlas BE</span>
-                      <span class="log-level">[GATEWAY]</span>
-                      <span class="log-msg">Auth, Supply, File, Control Service를 API Gateway 기준으로 분리</span>
+                      <span class="log-level">[SCM/API]</span>
+                      <span class="log-msg">공급망의 발주, 재고, 출하, 반품 흐름을 서비스 경계로 나누고 API Gateway와 Swagger/OpenAPI 문서 기준으로 협업 가능한 계약을 정리했습니다.</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">MHiT</span>
-                      <span class="log-level">[DATABASE]</span>
-                      <span class="log-msg">야구 예매와 셔틀 예약을 ERD, SQL 쿼리, 프로시저로 검증</span>
+                      <span class="log-level">[DB/SQL]</span>
+                      <span class="log-msg">야구 경기 예매와 셔틀 예약을 하나의 DB 흐름으로 설계하고, 예약 중복 여부와 좌석 수 검증을 SQL 쿼리·프로시저 단위로 확인했습니다.</span>
                     </div>
                   </div>
                 </div>
@@ -1270,18 +1091,11 @@
           </section>
         </div>
 
-        <section class="metrics" aria-label="런타임 상태 지표">
+        <section class="metrics" aria-label="포트폴리오 핵심 지표">
           <div class="metric">
             <div class="metric-label">Public Repos</div>
             <div class="metric-value">10 repos</div>
             <div class="metric-small">iamxoghks public</div>
-          </div>
-          <div class="metric">
-            <div class="metric-label">Core Stack</div>
-            <div class="metric-value">Java/Spring</div>
-            <svg class="sparkline" viewBox="0 0 120 28" aria-hidden="true">
-              <path d="M1 21 L8 19 L15 20 L22 16 L29 18 L36 12 L43 15 L50 11 L57 13 L64 9 L71 12 L78 8 L85 10 L92 7 L99 11 L106 6 L119 5" fill="none" stroke="currentColor" stroke-width="2"/>
-            </svg>
           </div>
           <div class="metric">
             <div class="metric-label">Backend Projects</div>
@@ -1289,36 +1103,21 @@
             <div class="metric-small">Tantan / Atlas / MHiT</div>
           </div>
           <div class="metric">
-            <div class="metric-label">Data Layer</div>
-            <div class="metric-value">MySQL/Redis</div>
-            <svg class="sparkline" viewBox="0 0 120 28" aria-hidden="true">
-              <path d="M2 18 L9 17 L16 19 L23 12 L30 14 L37 15 L44 10 L51 12 L58 9 L65 13 L72 11 L79 15 L86 9 L93 10 L100 8 L107 11 L118 7" fill="none" stroke="currentColor" stroke-width="2"/>
-            </svg>
+            <div class="metric-label">Main Contribution</div>
+            <div class="metric-value">API/Data</div>
+            <div class="metric-small">auth / cache / search / SQL</div>
           </div>
           <div class="metric">
-            <div class="metric-label">Search/Event</div>
-            <div class="metric-value">ES/Kafka</div>
-            <div class="metric-small">index / async flow</div>
-          </div>
-        </section>
-
-        <section class="runtime-actions">
-          <div class="ask-box">
-            <div class="ask-label">Review Focus</div>
-            <div class="ask-field" id="ask-field">시스템 설계, API, 데이터 모델링, 성능 개선 근거를 프로젝트별로 확인할 수 있습니다.</div>
-          </div>
-          <div class="quick-actions" aria-label="빠른 명령">
-            <button class="command-button" type="button" data-command="TanTan: 검색 정합성, Redis 캐시, WebSocket 구독 최적화">TanTan</button>
-            <button class="command-button" type="button" data-command="Atlas: SCM 도메인 흐름, API Gateway, 서비스 경계">Atlas</button>
-            <button class="command-button" type="button" data-command="MHiT: ERD, SQL 쿼리, 예약 프로시저 검증">MHiT</button>
-            <a class="command-button" href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">Open GitHub</a>
+            <div class="metric-label">Project Domains</div>
+            <div class="metric-value">3 domains</div>
+            <div class="metric-small">gym / SCM / reservation</div>
           </div>
         </section>
 
         <section class="progress-section">
           <div class="progress-caption">
-            <span>Portfolio scope: system design / API / data / performance</span>
-            <span>review</span>
+            <span>주요 검토 축: TanTan 검색·채팅 / Atlas SCM API / MHiT 예약 DB</span>
+            <span>backend</span>
           </div>
           <div class="progress-track" aria-hidden="true">
             <span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span>
@@ -1332,8 +1131,6 @@
     <script>
       const tabs = document.querySelectorAll(".tab");
       const panels = document.querySelectorAll(".tab-panel");
-      const askField = document.querySelector("#ask-field");
-      const commandButtons = document.querySelectorAll("[data-command]");
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
@@ -1346,12 +1143,6 @@
           panels.forEach((panel) => {
             panel.classList.toggle("active", panel.id === `panel-${target}`);
           });
-        });
-      });
-
-      commandButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          askField.textContent = button.dataset.command;
         });
       });
     </script>
