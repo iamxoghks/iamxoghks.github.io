@@ -31,6 +31,10 @@
   - Atlas README: SCM order/inventory/shipment/return/settlement flow, API Gateway, service split, Redis/Elasticsearch/Kafka
   - MHiT README: baseball ticketing plus shuttle reservation DB project, ERD, SQL query/procedure validation
   - Vibe work README summaries for Noa Sudoku, codex-receipts, tufte-viz-codex, valentine-memory
+- Polished portfolio content so the terminal metaphor reads as an evidence console rather than a fake runtime:
+  - removed fake timestamps, `Internal Node Address`, `Ask Runtime`, `README indexing`, `fresh/running` style labels
+  - changed tabs to Overview, Architecture, API / Data, Decision Log
+  - shifted lower content toward review focus, architecture decisions, API/data surfaces, and system-design evidence
 
 ## QA Notes
 
@@ -48,9 +52,10 @@
   - outer shell radius is `0px`, shadow is `none`, page padding is `0px`
   - body pseudo backgrounds are disabled with `content: none`
   - stack items, command buttons, tags, and progress segments use `0px` corner radius
-  - Build Log tab no longer repeats project names
+  - Decision Log tab no longer repeats project names
   - no `footer` element remains; `made by Codex` is plain bottom text via `.panel-credit`
+- Portfolio copy avoids fake runtime status and uses backend evidence-oriented labels.
 
 ## Resume Prompt
 
-Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Runtime Field Terminal direction, keep stack icons loaded from local SVG assets, keep the bottom credit as plain text rather than a divided footer row, and verify with Codex in-app browser before handoff.
+Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Backend Evidence Console direction, keep stack icons loaded from local SVG assets, keep the bottom credit as plain text rather than a divided footer row, and verify with Codex in-app browser before handoff.
