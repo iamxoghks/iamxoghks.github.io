@@ -755,65 +755,12 @@
         font-size: 13px;
       }
 
-      .progress-section {
-        padding: 18px clamp(22px, 3vw, 44px) 0;
-        font-family: var(--mono);
-      }
-
-      .progress-caption {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        color: var(--text);
-        font-size: 17px;
-      }
-
-      .progress-caption span:last-child {
-        color: var(--orange);
-      }
-
-      .progress-track {
-        display: grid;
-        grid-template-columns: repeat(72, 1fr);
-        gap: 4px;
-        margin-top: 11px;
-      }
-
-      .progress-segment {
-        height: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 0;
-        background: rgba(255, 255, 255, 0.07);
-      }
-
-      .progress-segment.hot {
-        border-color: rgba(255, 111, 44, 0.54);
-        background: var(--orange);
-        box-shadow: 0 0 16px rgba(255, 111, 44, 0.24);
-      }
-
       .panel-credit {
         padding: 9px clamp(22px, 3vw, 44px) 18px;
         color: var(--muted);
         font-family: var(--mono);
         font-size: 14px;
         text-align: right;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        .progress-segment.hot {
-          animation: pulse-hot 1600ms ease-in-out infinite;
-        }
-
-        @keyframes pulse-hot {
-          0%,
-          100% {
-            opacity: 0.78;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
       }
 
       @media (max-width: 1080px) {
@@ -923,13 +870,6 @@
           border-right: 0;
         }
 
-        .progress-track {
-          grid-template-columns: repeat(36, 1fr);
-        }
-
-        .progress-segment {
-          height: 19px;
-        }
       }
 
       @media (max-width: 440px) {
@@ -1435,16 +1375,6 @@
           </div>
           <div class="grass-meta">
             <span id="grass-total">sync pending</span>
-          </div>
-        </section>
-
-        <section class="progress-section">
-          <div class="progress-caption">
-            <span>검토 축: VARO 실무 / TanTan 검색·채팅 / Atlas SCM / MHiT DB</span>
-            <span>backend</span>
-          </div>
-          <div class="progress-track" aria-hidden="true">
-            <span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span>
           </div>
         </section>
 
