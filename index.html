@@ -170,24 +170,32 @@
         font-size: clamp(21px, 1.9vw, 29px);
       }
 
-      .github-link {
+      .profile-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 22px;
+        margin-top: 18px;
+      }
+
+      .profile-link {
         display: inline-flex;
         align-items: center;
         gap: 10px;
         width: fit-content;
-        margin-top: 18px;
         color: var(--green);
         font-family: var(--mono);
         font-size: 16px;
         transition: color 160ms ease, transform 160ms ease;
       }
 
-      .github-link:hover {
+      .profile-link:hover {
         color: #5fa876;
         transform: translateY(-1px);
       }
 
-      .octo {
+      .octo,
+      .contact-icon {
         width: 20px;
         height: 20px;
         flex: 0 0 auto;
@@ -659,19 +667,6 @@
         line-height: 1.45;
       }
 
-      .activity-email {
-        color: var(--text-soft);
-        font-size: 15px;
-        line-height: 1.35;
-        text-align: right;
-        word-break: break-all;
-        transition: color 160ms ease;
-      }
-
-      .activity-email:hover {
-        color: var(--green);
-      }
-
       .grass-scroll {
         max-width: 100%;
         overflow-x: auto;
@@ -702,9 +697,6 @@
 
       .grass-fallback {
         color: var(--text-soft);
-        text-decoration: underline;
-        text-decoration-color: rgba(67, 146, 97, 0.5);
-        text-underline-offset: 4px;
       }
 
       .grass-cell {
@@ -741,14 +733,6 @@
         margin-top: 9px;
         color: var(--muted);
         font-size: 13px;
-      }
-
-      .grass-meta a {
-        color: var(--text-soft);
-      }
-
-      .grass-meta a:hover {
-        color: var(--green);
       }
 
       .progress-section {
@@ -914,10 +898,6 @@
           gap: 8px;
         }
 
-        .activity-email {
-          text-align: left;
-        }
-
         .metric,
         .metric:nth-child(2n) {
           border-right: 0;
@@ -982,12 +962,21 @@
               <h1>김태환</h1>
               <span class="handle">/ iamxoghks</span>
             </div>
-            <a class="github-link" href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">
-              <svg class="octo" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.82 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.43 11.43 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/>
-              </svg>
-              github.com/iamxoghks
-            </a>
+            <div class="profile-links" aria-label="프로필 링크">
+              <a class="profile-link" href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">
+                <svg class="octo" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.82 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.43 11.43 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/>
+                </svg>
+                github.com/iamxoghks
+              </a>
+              <a class="profile-link" href="mailto:iam@xoghks.com">
+                <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>
+                  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m4 7 8 6 8-6"/>
+                </svg>
+                iam@xoghks.com
+              </a>
+            </div>
             <p class="role-copy">
               <strong>Backend Engineer</strong><br>
               스타트업에서 에듀테크·메타버스 서비스를 기획, 개발, 배포했고
@@ -1207,21 +1196,21 @@
               <aside class="side-console" aria-label="프로젝트 노드">
                 <div class="side-title">
                   <span>실무 경험</span>
-                  <span class="side-count">2020.12-2023.03</span>
+                  <span class="side-count">VARO Co., Ltd.</span>
                 </div>
                 <ul class="project-list">
                   <li>
                     <div class="side-row side-row-static">
                       <span class="node-dot"></span>
                       <span>사원 / 연구개발팀</span>
-                      <span class="row-desc">에듀테크 플랫폼</span>
+                      <span class="row-desc">2020.12-2022.10</span>
                     </div>
                   </li>
                   <li>
                     <div class="side-row side-row-static">
                       <span class="node-dot"></span>
                       <span>선임연구원 / 연구개발팀</span>
-                      <span class="row-desc">메타버스 플랫폼</span>
+                      <span class="row-desc">2022.11-2023.03</span>
                     </div>
                   </li>
                 </ul>
@@ -1386,7 +1375,7 @@
         <section class="metrics" aria-label="포트폴리오 핵심 지표">
           <div class="metric">
             <div class="metric-label">Work Experience</div>
-            <div class="metric-value">VARO</div>
+            <div class="metric-value">VARO Co., Ltd.</div>
             <div class="metric-small">2020.12-2023.03</div>
           </div>
           <div class="metric">
@@ -1412,9 +1401,6 @@
               <div class="terminal-label">GitHub Activity</div>
               <p class="activity-copy">페이지 로드 시 공개 GitHub 기여 그래프를 갱신합니다.</p>
             </div>
-            <a class="activity-email" href="mailto:iam@xoghks.com">
-              iam@xoghks.com
-            </a>
           </div>
           <div class="grass-scroll" aria-label="최근 1년 GitHub contributions">
             <div class="grass-grid" id="github-grass" aria-live="polite">
@@ -1423,7 +1409,6 @@
           </div>
           <div class="grass-meta">
             <span id="grass-total">sync pending</span>
-            <a href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">github.com/iamxoghks</a>
           </div>
         </section>
 
@@ -1474,12 +1459,9 @@
         }
 
         grassGrid.innerHTML = "";
-        const fallback = document.createElement("a");
+        const fallback = document.createElement("span");
         fallback.className = "grass-fallback";
-        fallback.href = "https://github.com/iamxoghks";
-        fallback.target = "_blank";
-        fallback.rel = "noreferrer";
-        fallback.textContent = "GitHub profile에서 contribution graph 확인";
+        fallback.textContent = "GitHub contribution graph unavailable";
         grassGrid.append(fallback);
         grassTotal.textContent = "GitHub live sync unavailable";
       };
