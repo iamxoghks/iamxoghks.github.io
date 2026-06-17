@@ -638,6 +638,119 @@
         font-size: 13px;
       }
 
+      .github-activity {
+        padding: 18px clamp(22px, 3vw, 44px) 0;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+      }
+
+      .activity-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 12px;
+      }
+
+      .activity-copy {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .activity-email {
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.35;
+        text-align: right;
+        word-break: break-all;
+        transition: color 160ms ease;
+      }
+
+      .activity-email:hover {
+        color: var(--green);
+      }
+
+      .grass-scroll {
+        max-width: 100%;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(67, 146, 97, 0.42) transparent;
+      }
+
+      .grass-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 11px;
+        grid-template-rows: repeat(7, 11px);
+        gap: 4px;
+        width: max-content;
+        min-height: 101px;
+        align-content: start;
+      }
+
+      .grass-loading,
+      .grass-fallback {
+        grid-column: 1 / span 34;
+        grid-row: 1 / -1;
+        color: var(--muted);
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .grass-fallback {
+        color: var(--text-soft);
+        text-decoration: underline;
+        text-decoration-color: rgba(67, 146, 97, 0.5);
+        text-underline-offset: 4px;
+      }
+
+      .grass-cell {
+        width: 11px;
+        height: 11px;
+        border: 1px solid rgba(209, 223, 204, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .grass-cell[data-level="1"] {
+        border-color: rgba(67, 146, 97, 0.22);
+        background: rgba(67, 146, 97, 0.22);
+      }
+
+      .grass-cell[data-level="2"] {
+        border-color: rgba(67, 146, 97, 0.38);
+        background: rgba(67, 146, 97, 0.42);
+      }
+
+      .grass-cell[data-level="3"] {
+        border-color: rgba(67, 146, 97, 0.54);
+        background: rgba(67, 146, 97, 0.68);
+      }
+
+      .grass-cell[data-level="4"] {
+        border-color: rgba(130, 194, 121, 0.72);
+        background: #82c279;
+      }
+
+      .grass-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grass-meta a {
+        color: var(--text-soft);
+      }
+
+      .grass-meta a:hover {
+        color: var(--green);
+      }
+
       .progress-section {
         padding: 18px clamp(22px, 3vw, 44px) 0;
         font-family: var(--mono);
@@ -792,6 +905,17 @@
 
         .metrics {
           grid-template-columns: 1fr;
+        }
+
+        .activity-header,
+        .grass-meta {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .activity-email {
+          text-align: left;
         }
 
         .metric,
@@ -1282,6 +1406,27 @@
           </div>
         </section>
 
+        <section class="github-activity" aria-label="GitHub contribution activity">
+          <div class="activity-header">
+            <div>
+              <div class="terminal-label">GitHub Activity</div>
+              <p class="activity-copy">페이지 로드 시 공개 GitHub 기여 그래프를 갱신합니다.</p>
+            </div>
+            <a class="activity-email" href="mailto:181794569+iamxoghks@users.noreply.github.com">
+              181794569+iamxoghks@users.noreply.github.com
+            </a>
+          </div>
+          <div class="grass-scroll" aria-label="최근 1년 GitHub contributions">
+            <div class="grass-grid" id="github-grass" aria-live="polite">
+              <span class="grass-loading">GitHub contributions loading...</span>
+            </div>
+          </div>
+          <div class="grass-meta">
+            <span id="grass-total">sync pending</span>
+            <a href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">github.com/iamxoghks</a>
+          </div>
+        </section>
+
         <section class="progress-section">
           <div class="progress-caption">
             <span>검토 축: VARO 실무 / TanTan 검색·채팅 / Atlas SCM / MHiT DB</span>
@@ -1313,6 +1458,85 @@
           });
         });
       });
+
+      const grassGrid = document.querySelector("#github-grass");
+      const grassTotal = document.querySelector("#grass-total");
+      const contributionsUrl = "https://github-contributions-api.jogruber.de/v4/iamxoghks?y=last";
+      const contributionDate = new Intl.DateTimeFormat("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+
+      const renderFallbackGrass = () => {
+        if (!grassGrid || !grassTotal) {
+          return;
+        }
+
+        grassGrid.innerHTML = "";
+        const fallback = document.createElement("a");
+        fallback.className = "grass-fallback";
+        fallback.href = "https://github.com/iamxoghks";
+        fallback.target = "_blank";
+        fallback.rel = "noreferrer";
+        fallback.textContent = "GitHub profile에서 contribution graph 확인";
+        grassGrid.append(fallback);
+        grassTotal.textContent = "GitHub live sync unavailable";
+      };
+
+      const renderGitHubGrass = async () => {
+        if (!grassGrid || !grassTotal) {
+          return;
+        }
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 8000);
+
+        try {
+          const response = await fetch(contributionsUrl, {
+            cache: "no-store",
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error("Contribution API request failed");
+          }
+
+          const payload = await response.json();
+          const contributions = Array.isArray(payload.contributions)
+            ? payload.contributions.slice(-371)
+            : [];
+
+          if (!contributions.length) {
+            throw new Error("Contribution API returned empty data");
+          }
+
+          grassGrid.innerHTML = "";
+
+          contributions.forEach((day) => {
+            const cell = document.createElement("span");
+            const count = Number(day.count) || 0;
+            const level = Math.max(0, Math.min(Number(day.level) || 0, 4));
+            const date = new Date(`${day.date}T00:00:00`);
+
+            cell.className = "grass-cell";
+            cell.dataset.level = String(level);
+            cell.title = `${contributionDate.format(date)} · ${count} contributions`;
+            cell.setAttribute("aria-label", cell.title);
+            grassGrid.append(cell);
+          });
+
+          const total = Number(payload.total?.lastYear)
+            || contributions.reduce((sum, day) => sum + (Number(day.count) || 0), 0);
+          grassTotal.textContent = `${total.toLocaleString("ko-KR")} contributions / last year`;
+        } catch (error) {
+          renderFallbackGrass();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      };
+
+      renderGitHubGrass();
     </script>
   </body>
 </html>
