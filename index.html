@@ -667,6 +667,25 @@
         line-height: 1.45;
       }
 
+      .activity-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .activity-year {
+        min-height: 29px;
+        border: 1px solid rgba(209, 223, 204, 0.24);
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-soft);
+        font-family: var(--mono);
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        outline: 0;
+      }
+
       .grass-scroll {
         max-width: 100%;
         overflow-x: auto;
@@ -1398,11 +1417,17 @@
         <section class="github-activity" aria-label="GitHub contribution activity">
           <div class="activity-header">
             <div>
-              <div class="terminal-label">GitHub Activity</div>
-              <p class="activity-copy">페이지 로드 시 공개 GitHub 기여 그래프를 갱신합니다.</p>
+              <div class="activity-title-row">
+                <div class="terminal-label">GitHub Activity</div>
+                <select class="activity-year" id="activity-year" aria-label="GitHub contribution year">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+              <p class="activity-copy">선택한 연도의 공개 GitHub 기여 그래프를 갱신합니다.</p>
             </div>
           </div>
-          <div class="grass-scroll" aria-label="최근 1년 GitHub contributions">
+          <div class="grass-scroll" aria-label="선택 연도 GitHub contributions">
             <div class="grass-grid" id="github-grass" aria-live="polite">
               <span class="grass-loading">GitHub contributions loading...</span>
             </div>
@@ -1446,7 +1471,8 @@
 
       const grassGrid = document.querySelector("#github-grass");
       const grassTotal = document.querySelector("#grass-total");
-      const contributionsUrl = "https://github-contributions-api.jogruber.de/v4/iamxoghks?y=last";
+      const activityYear = document.querySelector("#activity-year");
+      const contributionsBaseUrl = "https://github-contributions-api.jogruber.de/v4/iamxoghks";
       const contributionDate = new Intl.DateTimeFormat("ko-KR", {
         year: "numeric",
         month: "2-digit",
@@ -1463,19 +1489,20 @@
         fallback.className = "grass-fallback";
         fallback.textContent = "GitHub contribution graph unavailable";
         grassGrid.append(fallback);
-        grassTotal.textContent = "GitHub live sync unavailable";
+        grassTotal.textContent = `${activityYear?.value || "GitHub"} sync unavailable`;
       };
 
-      const renderGitHubGrass = async () => {
+      const renderGitHubGrass = async (year = activityYear?.value || "2026") => {
         if (!grassGrid || !grassTotal) {
           return;
         }
 
         const controller = new AbortController();
         const timeout = window.setTimeout(() => controller.abort(), 8000);
+        const selectedYear = String(year);
 
         try {
-          const response = await fetch(contributionsUrl, {
+          const response = await fetch(`${contributionsBaseUrl}?y=${encodeURIComponent(selectedYear)}`, {
             cache: "no-store",
             signal: controller.signal,
           });
@@ -1486,7 +1513,7 @@
 
           const payload = await response.json();
           const contributions = Array.isArray(payload.contributions)
-            ? payload.contributions.slice(-371)
+            ? payload.contributions
             : [];
 
           if (!contributions.length) {
@@ -1508,15 +1535,20 @@
             grassGrid.append(cell);
           });
 
-          const total = Number(payload.total?.lastYear)
+          const total = Number(payload.total?.[selectedYear])
             || contributions.reduce((sum, day) => sum + (Number(day.count) || 0), 0);
-          grassTotal.textContent = `${total.toLocaleString("ko-KR")} contributions / last year`;
+
+          grassTotal.textContent = `${total.toLocaleString("ko-KR")} contributions / ${selectedYear}`;
         } catch (error) {
           renderFallbackGrass();
         } finally {
           window.clearTimeout(timeout);
         }
       };
+
+      activityYear?.addEventListener("change", () => {
+        renderGitHubGrass(activityYear.value);
+      });
 
       renderGitHubGrass();
     </script>
