@@ -511,6 +511,15 @@
         transform: translateX(2px);
       }
 
+      .side-row-static {
+        cursor: default;
+      }
+
+      .side-row-static:hover {
+        color: var(--text-soft);
+        transform: none;
+      }
+
       .node-dot {
         width: 7px;
         height: 7px;
@@ -849,9 +858,10 @@
             </a>
             <p class="role-copy">
               <strong>Backend Engineer</strong><br>
+              스타트업에서 에듀테크·메타버스 서비스를 기획, 개발, 배포했고
               GitHub 공개 레포 10개를 기반으로 Java/Spring 백엔드, SCM 도메인,
-              검색·캐시·이벤트 흐름을 구현해 온 개발자. 궁금증을 로그와 API 계약으로
-              쪼개고, 실패한 지점을 다음 설계의 입력으로 남깁니다.
+              검색·캐시·실시간 흐름을 구현해 온 개발자. 궁금증을 로그와 API 계약으로
+              쪼개고, 재사용 가능한 설계로 남깁니다.
             </p>
 
             <div class="stack-area" aria-label="주요 기술 스택">
@@ -957,7 +967,7 @@
                 <section class="stack-group" aria-label="인프라와 문서화 기술">
                   <div class="stack-group-heading">
                     <span>Infra / Docs</span>
-                    <span class="stack-group-count">4</span>
+                    <span class="stack-group-count">5</span>
                   </div>
                   <div class="stack-grid">
                     <div class="stack-item">
@@ -972,6 +982,13 @@
                       <span>
                         <span class="stack-name">Swagger / OpenAPI</span>
                         <span class="stack-role">api contract</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/nginx.svg" alt="Nginx"></span>
+                      <span>
+                        <span class="stack-name">Nginx</span>
+                        <span class="stack-role">proxy routing</span>
                       </span>
                     </div>
                     <div class="stack-item">
@@ -997,6 +1014,10 @@
           <div class="objectives">
             <div class="terminal-label">Backend Work</div>
             <ul class="focus-list">
+              <li class="focus-item">
+                <span class="focus-project">VARO</span>
+                <span class="focus-desc">Java/Spring 에듀테크 플랫폼에서 회원·알림·강의실·영상·실시간 강의와 채팅 기능을 기획부터 배포까지 다뤘습니다.</span>
+              </li>
               <li class="focus-item">
                 <span class="focus-project">TanTan</span>
                 <span class="focus-desc">Spring Security/JWT 인증, Redis 세션·ZSet 캐시, Elasticsearch 검색 정합성, WebSocket 채팅 구독 구조를 다뤘습니다.</span>
@@ -1028,6 +1049,11 @@
                   <div class="log-title">Representative Work / 기술 적용 요약</div>
                   <div class="log-lines">
                     <div class="log-line">
+                      <span class="log-time">VARO</span>
+                      <span class="log-level">[EDTECH/REALTIME]</span>
+                      <span class="log-msg">Java/Spring 기반 에듀테크 플랫폼에서 회원·알림·강의실·영상·환불·대시보드 기능을 개발했고, Janus 스트리밍·화이트보드·WebSocket 채팅을 서비스 흐름에 연결했습니다.</span>
+                    </div>
+                    <div class="log-line">
                       <span class="log-time">TanTan BE</span>
                       <span class="log-level">[AUTH/CACHE/SEARCH]</span>
                       <span class="log-msg">헬스장 탐색 서비스에서 JWT 인증과 Redis TTL 세션을 구성하고, ZSet으로 팔로우·즐겨찾기 정렬 조회를 줄였습니다. 검색은 Elasticsearch와 Outbox 패턴으로 DB 저장과 색인 정합성을 맞췄습니다.</span>
@@ -1047,6 +1073,29 @@
               </div>
 
               <aside class="side-console" aria-label="프로젝트 노드">
+                <div class="side-title">
+                  <span>Experience</span>
+                  <span class="side-count">2020-2023</span>
+                </div>
+                <ul class="project-list">
+                  <li>
+                    <div class="side-row side-row-static">
+                      <span class="node-dot"></span>
+                      <span>VARO EdTech</span>
+                      <span class="row-desc">회원/강의실/영상</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="side-row side-row-static">
+                      <span class="node-dot"></span>
+                      <span>VARO Realtime</span>
+                      <span class="row-desc">Janus/WebSocket</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="side-divider"></div>
+
                 <div class="side-title">
                   <span>Project Nodes</span>
                   <span class="side-count">3</span>
@@ -1208,6 +1257,11 @@
 
         <section class="metrics" aria-label="포트폴리오 핵심 지표">
           <div class="metric">
+            <div class="metric-label">Work Experience</div>
+            <div class="metric-value">VARO</div>
+            <div class="metric-small">2020.12-2023.03</div>
+          </div>
+          <div class="metric">
             <div class="metric-label">Public Repos</div>
             <div class="metric-value">10 repos</div>
             <div class="metric-small">iamxoghks public</div>
@@ -1218,20 +1272,15 @@
             <div class="metric-small">Tantan / Atlas / MHiT</div>
           </div>
           <div class="metric">
-            <div class="metric-label">Main Contribution</div>
-            <div class="metric-value">API/Data</div>
-            <div class="metric-small">auth / cache / search / SQL</div>
-          </div>
-          <div class="metric">
-            <div class="metric-label">Project Domains</div>
-            <div class="metric-value">3 domains</div>
-            <div class="metric-small">gym / SCM / reservation</div>
+            <div class="metric-label">Domain Range</div>
+            <div class="metric-value">4 domains</div>
+            <div class="metric-small">edtech / gym / SCM / reservation</div>
           </div>
         </section>
 
         <section class="progress-section">
           <div class="progress-caption">
-            <span>주요 검토 축: TanTan 검색·채팅 / Atlas SCM API / MHiT 예약 DB</span>
+            <span>검토 축: VARO 실무 / TanTan 검색·채팅 / Atlas SCM / MHiT DB</span>
             <span>backend</span>
           </div>
           <div class="progress-track" aria-hidden="true">

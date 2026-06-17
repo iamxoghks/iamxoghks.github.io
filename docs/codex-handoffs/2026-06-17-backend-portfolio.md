@@ -49,6 +49,10 @@
   - expanded the Stack section from 6 items to 14 TanTan/Atlas-backed backend technologies
   - added local SVG icons for security, JWT, JPA, WebSocket/STOMP, gateway, OpenAPI, Docker/Kubernetes, and S3/File Service
   - grouped Stack items by README-style categories: Backend, Data, Event / Realtime, Infra / Docs
+- Combined Notion profile content via `ntn pages get a7c661f3bf90411985841425c9082a85`:
+  - added VARO edtech/metaverse startup experience without exposing birth date, phone number, or personal contact details
+  - reflected Java/Spring edtech platform, Janus streaming, whiteboard, WebSocket chat, and Nginx proxy experience
+  - added Nginx to the Infra / Docs stack group and updated overview metrics/progress text with work experience/domain range
 
 ## QA Notes
 
