@@ -48,6 +48,7 @@
   - increased UI text sizes slightly across terminal header, body copy, stack rows, logs, side rows, metrics, and footer
   - expanded the Stack section from 6 items to 14 TanTan/Atlas-backed backend technologies
   - added local SVG icons for security, JWT, JPA, WebSocket/STOMP, gateway, OpenAPI, Docker/Kubernetes, and S3/File Service
+  - grouped Stack items by README-style categories: Backend, Data, Event / Realtime, Infra / Docs
 
 ## QA Notes
 
@@ -76,6 +77,10 @@
   - Stack shows 14 non-duplicative items, with 3 columns on desktop, 2 columns around 819px, and 1 column on narrow mobile
   - added SVG icons parse successfully and load without broken images
   - increased text sizes do not introduce horizontal overflow at 1440px, 819px, or 390px
+- Latest stack grouping cleanup verified:
+  - stack headings show `Backend / 5`, `Data / 3`, `Event / Realtime / 2`, and `Infra / Docs / 4`
+  - grouped stack remains unboxed and uses terminal-style separators
+  - no horizontal overflow or clipped stack labels at 819px or 390px
 
 ## Resume Prompt
 
