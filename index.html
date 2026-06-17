@@ -1,71 +1,1487 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kim Taehwan / iamxoghks</title>
+    <meta
+      name="description"
+      content="김태환 / iamxoghks - 시스템 설계, API, 인프라, 성능 최적화에 집중하는 백엔드 엔지니어 포트폴리오."
+    >
+    <meta name="theme-color" content="#050806">
+    <title>김태환 / iamxoghks - Backend Runtime Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050806'/%3E%3Cpath d='M8 10h16v12H8z' fill='none' stroke='%2369d574' stroke-width='2'/%3E%3Cpath d='M12 15l3 2-3 2' fill='none' stroke='%23ff6f2c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+      rel="stylesheet"
+    >
     <style>
       :root {
         color-scheme: dark;
-        --bg: #0b0d10;
-        --text: #f4f1ea;
-        --muted: #8b929d;
-        --line: #252b33;
+        --bg: #0c0f0d;
+        --panel: rgba(9, 11, 10, 0.86);
+        --panel-strong: rgba(12, 14, 12, 0.88);
+        --panel-soft: rgba(255, 255, 255, 0.04);
+        --line: rgba(204, 213, 199, 0.16);
+        --line-strong: rgba(214, 225, 208, 0.28);
+        --text: #f5f7ef;
+        --text-soft: #c8cdc4;
+        --muted: #858a83;
+        --muted-2: #565b55;
+        --green: #439261;
+        --stack-heading: #9ba49a;
+        --green-dim: rgba(67, 146, 97, 0.16);
+        --orange: #ff6f2c;
+        --orange-dim: rgba(255, 111, 44, 0.16);
+        --blue: #72d8ff;
+        --blue-dim: rgba(114, 216, 255, 0.12);
+        --radius-xl: 0;
+        --radius: 0;
+        --mono: "Pretendard", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --sans: "Pretendard", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --pad: clamp(18px, 3vw, 46px);
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        min-height: 100svh;
-        display: grid;
-        place-items: center;
-        background: var(--bg);
+        min-width: 320px;
         color: var(--text);
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      }
-
-      main {
-        width: min(720px, calc(100vw - 40px));
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 48px 0;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        font-size: clamp(40px, 9vw, 88px);
-        line-height: 0.94;
+        font-family: var(--sans);
+        background: #10120f;
         letter-spacing: 0;
       }
 
-      p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.7;
+      body::before {
+        content: none;
+      }
+
+      body::after {
+        content: none;
       }
 
       a {
-        color: var(--text);
-        text-underline-offset: 5px;
+        color: inherit;
+        text-decoration: none;
       }
 
-      footer {
-        margin-top: 32px;
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .page {
+        display: grid;
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      .terminal-shell {
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: var(--radius-xl);
+        background: var(--panel-strong);
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
+      .terminal-top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 18px;
+        min-height: 52px;
+        padding: 0 clamp(22px, 3vw, 44px);
+        border-bottom: 1px solid var(--line);
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 15px;
+      }
+
+      .prompt {
+        display: inline-flex;
+        align-items: center;
+        min-width: 0;
+        gap: 12px;
+        white-space: nowrap;
+      }
+
+      .prompt-caret {
+        font-weight: 700;
+        color: var(--green);
+      }
+
+      .runtime-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.9fr);
+        gap: clamp(22px, 3.6vw, 50px);
+        padding: clamp(24px, 3.2vw, 42px) clamp(22px, 3vw, 44px) 18px;
+      }
+
+      .identity {
+        min-width: 0;
+      }
+
+      .name-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 13px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(46px, 4.2vw, 66px);
+        font-weight: 700;
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+
+      .handle {
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: clamp(21px, 1.9vw, 29px);
+      }
+
+      .profile-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 22px;
+        margin-top: 18px;
+      }
+
+      .profile-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 16px;
+        transition: color 160ms ease, transform 160ms ease;
+      }
+
+      .profile-link:hover {
+        color: #5fa876;
+        transform: translateY(-1px);
+      }
+
+      .octo,
+      .contact-icon {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+      }
+
+      .role-copy {
+        width: min(100%, 560px);
+        margin-top: 18px;
+        color: var(--text-soft);
+        font-family: var(--mono);
+        font-size: 17px;
+        line-height: 1.62;
+      }
+
+      .role-copy strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .stack-area {
+        margin-top: 20px;
+      }
+
+      .terminal-label {
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .stack-groups {
+        display: grid;
+        gap: 15px;
+        margin-top: 12px;
+      }
+
+      .stack-group {
+        min-width: 0;
+      }
+
+      .stack-group-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid rgba(204, 213, 199, 0.18);
+        color: var(--stack-heading);
+        font-family: var(--mono);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .stack-group-count {
         color: var(--muted);
         font-size: 12px;
+        font-weight: 500;
+      }
+
+      .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0 24px;
+        margin-top: 4px;
+      }
+
+      .stack-item {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        align-items: center;
+        min-width: 0;
+        gap: 10px;
+        min-height: 40px;
+        padding: 5px 0;
+        border: 0;
+        border-bottom: 1px solid rgba(209, 223, 204, 0.12);
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .stack-logo {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+
+      .stack-logo img {
+        display: block;
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+
+      .stack-name {
+        min-width: 0;
+        overflow: hidden;
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 15px;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .stack-role {
+        margin-top: 2px;
+        overflow: hidden;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .objectives {
+        position: relative;
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        min-width: 0;
+        padding-left: clamp(24px, 4vw, 48px);
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .focus-list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: var(--mono);
+      }
+
+      .focus-item {
+        display: grid;
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+        min-width: 0;
+        color: var(--text-soft);
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .focus-project {
+        color: var(--green);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .focus-desc {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .tabbar {
+        display: flex;
+        overflow-x: auto;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        scrollbar-width: none;
+      }
+
+      .tabbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab {
+        min-width: max-content;
+        padding: 14px clamp(20px, 3vw, 42px) 13px;
+        border: 0;
+        border-right: 1px solid rgba(209, 223, 204, 0.08);
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 17px;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .tab:hover,
+      .tab[aria-selected="true"] {
+        color: var(--green);
+        background: rgba(67, 146, 97, 0.06);
+      }
+
+      .tab[aria-selected="true"] {
+        border-bottom-color: var(--green);
+      }
+
+      .runtime-panels {
+        padding: 0 clamp(22px, 3vw, 44px);
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      .terminal-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.72fr) minmax(290px, 0.72fr);
+      }
+
+      .main-console {
+        min-width: 0;
+        padding: 18px 22px 18px 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .side-console {
+        min-width: 0;
+        padding: 18px 0 18px 22px;
+      }
+
+      .state {
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .log-block {
+        font-family: var(--mono);
+      }
+
+      .log-title {
+        color: var(--green);
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .log-lines {
+        display: grid;
+        gap: 8px;
+        margin-top: 13px;
+      }
+
+      .log-line {
+        display: grid;
+        grid-template-columns: minmax(96px, 0.16fr) minmax(180px, 0.24fr) minmax(0, 1fr);
+        gap: 22px;
+        min-width: 0;
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .log-time {
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .log-level {
+        color: var(--green);
+        white-space: nowrap;
+      }
+
+      .log-msg {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .project-list,
+      .vibe-list {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .side-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .side-title:not(:first-child) {
+        margin-top: 18px;
+        padding-top: 15px;
+        border-top: 1px solid var(--line);
+      }
+
+      .side-count {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .side-row {
+        display: grid;
+        grid-template-columns: 14px minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 42px;
+        border-bottom: 1px solid rgba(209, 223, 204, 0.11);
+        color: var(--text-soft);
+        font-family: var(--mono);
+        font-size: 15px;
+        transition: color 160ms ease, transform 160ms ease;
+      }
+
+      .project-list .side-row:last-child,
+      .vibe-list .side-row:last-child {
+        border-bottom: 0;
+      }
+
+      .side-row:hover {
+        color: var(--text);
+        transform: translateX(2px);
+      }
+
+      .side-row-static {
+        cursor: default;
+      }
+
+      .side-row-static:hover {
+        color: var(--text-soft);
+        transform: none;
+      }
+
+      .node-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 10px rgba(67, 146, 97, 0.5);
+      }
+
+      .row-desc {
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .code-icon {
+        color: var(--green);
+        font-size: 13px;
+      }
+
+      .api-grid,
+      .build-grid,
+      .node-grid {
+        display: grid;
+        gap: 12px;
+        padding: 18px 0;
+      }
+
+      .api-row,
+      .node-card,
+      .build-row {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.38fr) minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        min-height: 48px;
+        border-bottom: 1px solid rgba(209, 223, 204, 0.12);
+        color: var(--text-soft);
+        font-family: var(--mono);
+        font-size: 15px;
+      }
+
+      .api-method {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .api-path,
+      .node-name,
+      .build-name {
+        color: var(--text);
+      }
+
+      .tag {
+        justify-self: end;
+        padding: 4px 8px;
+        border: 1px solid rgba(67, 146, 97, 0.42);
+        border-radius: 0;
+        color: var(--green);
+        background: var(--green-dim);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .metric {
+        min-width: 0;
+        padding: 13px 18px;
+        border-right: 1px solid var(--line);
+        font-family: var(--mono);
+      }
+
+      .metric:last-child {
+        border-right: 0;
+      }
+
+      .metric-label {
+        color: var(--green);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .metric-value {
+        margin-top: 5px;
+        color: var(--text);
+        font-size: clamp(20px, 2vw, 27px);
+        line-height: 1.2;
+      }
+
+      .metric-small {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .github-activity {
+        padding: 18px clamp(22px, 3vw, 44px) 0;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+      }
+
+      .activity-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 12px;
+      }
+
+      .activity-copy {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .activity-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .activity-year {
+        min-height: auto;
+        padding: 0 2px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--stack-heading);
+        font-family: var(--mono);
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        outline: 0;
+      }
+
+      .grass-scroll {
+        max-width: 100%;
+        overflow-x: auto;
+        padding-bottom: 3px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(67, 146, 97, 0.42) transparent;
+      }
+
+      .grass-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 11px;
+        grid-template-rows: repeat(7, 11px);
+        gap: 4px;
+        width: max-content;
+        min-height: 101px;
+        align-content: start;
+      }
+
+      .grass-loading,
+      .grass-fallback {
+        grid-column: 1 / span 34;
+        grid-row: 1 / -1;
+        color: var(--muted);
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .grass-fallback {
+        color: var(--text-soft);
+      }
+
+      .grass-cell {
+        width: 11px;
+        height: 11px;
+        border: 1px solid rgba(209, 223, 204, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .grass-cell[data-level="1"] {
+        border-color: rgba(67, 146, 97, 0.22);
+        background: rgba(67, 146, 97, 0.22);
+      }
+
+      .grass-cell[data-level="2"] {
+        border-color: rgba(67, 146, 97, 0.38);
+        background: rgba(67, 146, 97, 0.42);
+      }
+
+      .grass-cell[data-level="3"] {
+        border-color: rgba(67, 146, 97, 0.54);
+        background: rgba(67, 146, 97, 0.68);
+      }
+
+      .grass-cell[data-level="4"] {
+        border-color: rgba(130, 194, 121, 0.72);
+        background: #82c279;
+      }
+
+      .grass-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .panel-credit {
+        padding: 9px clamp(22px, 3vw, 44px) 18px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 14px;
+        text-align: right;
+      }
+
+      @media (max-width: 1080px) {
+        .intro-grid,
+        .terminal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .objectives {
+          padding-left: 0;
+          padding-top: 24px;
+          border-top: 1px solid var(--line-strong);
+          border-left: 0;
+        }
+
+        .main-console {
+          padding-right: 0;
+          border-right: 0;
+        }
+
+        .side-console {
+          padding: 18px 0 24px;
+          border-top: 1px solid var(--line);
+        }
+
+        .metrics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .stack-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .metric {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .metric:nth-child(2n) {
+          border-right: 0;
+        }
+
+      }
+
+      @media (max-width: 720px) {
+        :root {
+          --radius-xl: 0;
+        }
+
+        .page {
+          padding: 0;
+        }
+
+        .terminal-shell {
+          min-height: 100svh;
+        }
+
+        .terminal-top {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          padding-top: 18px;
+          padding-bottom: 16px;
+        }
+
+        .runtime-title {
+          justify-content: space-between;
+        }
+
+        .intro-grid {
+          padding-top: 28px;
+        }
+
+        .stack-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .api-row,
+        .node-card,
+        .build-row,
+        .focus-item {
+          grid-template-columns: 1fr;
+        }
+
+        .log-line {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          font-size: 14px;
+        }
+
+        .row-desc,
+        .tag {
+          justify-self: start;
+        }
+
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .activity-header,
+        .grass-meta {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .metric,
+        .metric:nth-child(2n) {
+          border-right: 0;
+        }
+
+      }
+
+      @media (max-width: 440px) {
+        h1 {
+          font-size: 42px;
+        }
+
+        .handle {
+          font-size: 19px;
+        }
+
+        .stack-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tab {
+          padding-right: 18px;
+          padding-left: 18px;
+          font-size: 14px;
+        }
+
+        .runtime-panels {
+          padding-right: 18px;
+          padding-left: 18px;
+        }
+
+        .main-console,
+        .side-console {
+          padding-top: 18px;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Kim Taehwan<br>iamxoghks</h1>
-      <p>Backend engineer portfolio is being shaped here.</p>
-      <p><a href="https://github.com/iamxoghks">github.com/iamxoghks</a></p>
-      <footer>made by Codex</footer>
+    <main class="page">
+      <section class="terminal-shell" aria-label="김태환 백엔드 런타임 포트폴리오">
+        <header class="terminal-top">
+          <div class="prompt">
+            <span class="prompt-caret">&gt;</span>
+            <span>iamxoghks@portfolio:~$ backend --review</span>
+          </div>
+          <div class="runtime-title">
+            <span>Backend Portfolio</span>
+          </div>
+        </header>
+
+        <section class="intro-grid">
+          <div class="identity">
+            <div class="name-row">
+              <h1>김태환</h1>
+              <span class="handle">/ iamxoghks</span>
+            </div>
+            <div class="profile-links" aria-label="프로필 링크">
+              <a class="profile-link" href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">
+                <svg class="octo" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.83 2.82 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.43 11.43 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/>
+                </svg>
+                github.com/iamxoghks
+              </a>
+              <a class="profile-link" href="mailto:iam@xoghks.com">
+                <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/>
+                  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m4 7 8 6 8-6"/>
+                </svg>
+                iam@xoghks.com
+              </a>
+            </div>
+            <p class="role-copy">
+              <strong>Backend Engineer</strong><br>
+              스타트업에서 에듀테크·메타버스 서비스를 기획, 개발, 배포했고
+              반년간 한화시스템 부트캠프(Beyond SW)에서 MHiT, TanTan, Atlas를
+              구현했습니다. Java/Spring 백엔드, SCM 도메인, 검색·캐시·실시간 흐름을
+              로그와 API 계약으로 쪼개고, 재사용 가능한 설계로 남깁니다.
+            </p>
+
+            <div class="stack-area" aria-label="주요 기술 스택">
+              <div class="terminal-label">Stack</div>
+              <div class="stack-groups">
+                <section class="stack-group" aria-label="백엔드 기술">
+                  <div class="stack-group-heading">
+                    <span>Backend</span>
+                    <span class="stack-group-count">5</span>
+                  </div>
+                  <div class="stack-grid">
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/java.svg" alt="Java"></span>
+                      <span>
+                        <span class="stack-name">Java 17</span>
+                        <span class="stack-role">runtime language</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/spring.svg" alt="Spring Framework"></span>
+                      <span>
+                        <span class="stack-name">Spring Boot</span>
+                        <span class="stack-role">application core</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/security.svg" alt="Spring Security"></span>
+                      <span>
+                        <span class="stack-name">Spring Security</span>
+                        <span class="stack-role">auth boundary</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/jwt.svg" alt="JWT"></span>
+                      <span>
+                        <span class="stack-name">JWT</span>
+                        <span class="stack-role">token session</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/jpa.svg" alt="Spring Data JPA"></span>
+                      <span>
+                        <span class="stack-name">Spring Data JPA</span>
+                        <span class="stack-role">entity mapping</span>
+                      </span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="stack-group" aria-label="데이터 기술">
+                  <div class="stack-group-heading">
+                    <span>Data</span>
+                    <span class="stack-group-count">3</span>
+                  </div>
+                  <div class="stack-grid">
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/mysql.svg" alt="MariaDB and MySQL"></span>
+                      <span>
+                        <span class="stack-name">MariaDB / MySQL</span>
+                        <span class="stack-role">relational schema</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/redis.svg" alt="Redis"></span>
+                      <span>
+                        <span class="stack-name">Redis</span>
+                        <span class="stack-role">cache / zset</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/elasticsearch.svg" alt="Elasticsearch"></span>
+                      <span>
+                        <span class="stack-name">Elasticsearch</span>
+                        <span class="stack-role">search index</span>
+                      </span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="stack-group" aria-label="이벤트와 실시간 기술">
+                  <div class="stack-group-heading">
+                    <span>Event / Realtime</span>
+                    <span class="stack-group-count">2</span>
+                  </div>
+                  <div class="stack-grid">
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/kafka.svg" alt="Apache Kafka"></span>
+                      <span>
+                        <span class="stack-name">Kafka</span>
+                        <span class="stack-role">event pipeline</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/websocket.svg" alt="WebSocket and STOMP"></span>
+                      <span>
+                        <span class="stack-name">WebSocket / STOMP</span>
+                        <span class="stack-role">chat channel</span>
+                      </span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="stack-group" aria-label="인프라와 문서화 기술">
+                  <div class="stack-group-heading">
+                    <span>Infra / Docs</span>
+                    <span class="stack-group-count">5</span>
+                  </div>
+                  <div class="stack-grid">
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/gateway.svg" alt="Spring Cloud Gateway"></span>
+                      <span>
+                        <span class="stack-name">Spring Cloud Gateway</span>
+                        <span class="stack-role">service routing</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/openapi.svg" alt="Swagger OpenAPI"></span>
+                      <span>
+                        <span class="stack-name">Swagger / OpenAPI</span>
+                        <span class="stack-role">api contract</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/nginx.svg" alt="Nginx"></span>
+                      <span>
+                        <span class="stack-name">Nginx</span>
+                        <span class="stack-role">proxy routing</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/docker.svg" alt="Docker and Kubernetes"></span>
+                      <span>
+                        <span class="stack-name">Docker / Kubernetes</span>
+                        <span class="stack-role">deploy runtime</span>
+                      </span>
+                    </div>
+                    <div class="stack-item">
+                      <span class="stack-logo"><img src="assets/icons/s3.svg" alt="S3 and file service"></span>
+                      <span>
+                        <span class="stack-name">S3 / File Service</span>
+                        <span class="stack-role">object storage</span>
+                      </span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <div class="objectives">
+            <div class="terminal-label">Backend Work</div>
+            <ul class="focus-list">
+              <li class="focus-item">
+                <span class="focus-project">VARO</span>
+                <span class="focus-desc">Java/Spring 에듀테크 플랫폼에서 회원·알림·강의실·영상·실시간 강의와 채팅 기능을 기획부터 배포까지 다뤘습니다.</span>
+              </li>
+              <li class="focus-item">
+                <span class="focus-project">TanTan</span>
+                <span class="focus-desc">Spring Security/JWT 인증, Redis 세션·ZSet 캐시, Elasticsearch 검색 정합성, WebSocket 채팅 구독 구조를 다뤘습니다.</span>
+              </li>
+              <li class="focus-item">
+                <span class="focus-project">Atlas</span>
+                <span class="focus-desc">SCM 발주·재고·출하·반품 흐름을 도메인 단위로 정리하고 API Gateway, 서비스 경계, Swagger 문서화를 적용했습니다.</span>
+              </li>
+              <li class="focus-item">
+                <span class="focus-project">MHiT</span>
+                <span class="focus-desc">야구 예매와 셔틀 예약을 ERD로 모델링하고, 중복 예약과 잔여 좌석 검증을 SQL 쿼리·프로시저로 처리했습니다.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <nav class="tabbar" aria-label="포트폴리오 런타임 탭">
+          <button class="tab" type="button" data-tab="terminal" aria-selected="true">Overview</button>
+          <button class="tab" type="button" data-tab="node" aria-selected="false">Architecture</button>
+          <button class="tab" type="button" data-tab="api" aria-selected="false">API / Data</button>
+          <button class="tab" type="button" data-tab="build" aria-selected="false">Decision Log</button>
+        </nav>
+
+        <div class="runtime-panels">
+          <section class="tab-panel active" id="panel-terminal">
+            <div class="terminal-grid">
+              <div class="main-console">
+                <div class="log-block">
+                  <div class="log-title">Representative Work / 기술 적용 요약</div>
+                  <div class="log-lines">
+                    <div class="log-line">
+                      <span class="log-time">VARO</span>
+                      <span class="log-level">[EDTECH/REALTIME]</span>
+                      <span class="log-msg">Java/Spring 기반 에듀테크 플랫폼에서 회원·알림·강의실·영상·환불·대시보드 기능을 개발했고, Janus 스트리밍·화이트보드·WebSocket 채팅을 서비스 흐름에 연결했습니다.</span>
+                    </div>
+                    <div class="log-line">
+                      <span class="log-time">TanTan BE</span>
+                      <span class="log-level">[AUTH/CACHE/SEARCH]</span>
+                      <span class="log-msg">헬스장 탐색 서비스에서 JWT 인증과 Redis TTL 세션을 구성하고, ZSet으로 팔로우·즐겨찾기 정렬 조회를 줄였습니다. 검색은 Elasticsearch와 Outbox 패턴으로 DB 저장과 색인 정합성을 맞췄습니다.</span>
+                    </div>
+                    <div class="log-line">
+                      <span class="log-time">Atlas BE</span>
+                      <span class="log-level">[SCM/API]</span>
+                      <span class="log-msg">공급망의 발주, 재고, 출하, 반품 흐름을 서비스 경계로 나누고 API Gateway와 Swagger/OpenAPI 문서 기준으로 협업 가능한 계약을 정리했습니다.</span>
+                    </div>
+                    <div class="log-line">
+                      <span class="log-time">MHiT</span>
+                      <span class="log-level">[DB/SQL]</span>
+                      <span class="log-msg">야구 경기 예매와 셔틀 예약을 하나의 DB 흐름으로 설계하고, 예약 중복 여부와 좌석 수 검증을 SQL 쿼리·프로시저 단위로 확인했습니다.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="side-console" aria-label="프로젝트 노드">
+                <div class="side-title">
+                  <span>실무 경험</span>
+                  <span class="side-count">VARO Co., Ltd.</span>
+                </div>
+                <ul class="project-list">
+                  <li>
+                    <div class="side-row side-row-static">
+                      <span class="node-dot"></span>
+                      <span>사원 / 연구개발팀</span>
+                      <span class="row-desc">2020.12-2022.10</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="side-row side-row-static">
+                      <span class="node-dot"></span>
+                      <span>선임연구원 / 연구개발팀</span>
+                      <span class="row-desc">2022.11-2023.03</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="side-title">
+                  <span>대표 프로젝트</span>
+                  <span class="side-count">3</span>
+                </div>
+                <ul class="project-list">
+                  <li>
+                    <a class="side-row" href="https://github.com/beyond-sw-camp/be23-2nd-team1-tantan-be" target="_blank" rel="noreferrer">
+                      <span class="node-dot"></span>
+                      <span>Tantan BE</span>
+                      <span class="row-desc">지도/채팅/운동기록</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="side-row" href="https://github.com/beyond-sw-camp/be23-fin-team1-Atlas-be" target="_blank" rel="noreferrer">
+                      <span class="node-dot"></span>
+                      <span>Atlas BE</span>
+                      <span class="row-desc">SCM 발주·재고·출하</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="side-row" href="https://github.com/beyond-sw-camp/be23-1st-wow-MHiT" target="_blank" rel="noreferrer">
+                      <span class="node-dot"></span>
+                      <span>MHiT</span>
+                      <span class="row-desc">야구 예매·셔틀 DB</span>
+                    </a>
+                  </li>
+                </ul>
+
+                <div class="side-title">
+                  <span>AI 작업물</span>
+                  <span class="side-count">4</span>
+                </div>
+                <ul class="vibe-list">
+                  <li>
+                    <a class="side-row" href="https://github.com/noa-sudoku/noa-sudoku.github.io" target="_blank" rel="noreferrer">
+                      <span class="code-icon">&lt;/&gt;</span>
+                      <span>noa-sudoku</span>
+                      <span class="row-desc">광고 없는 iOS 스도쿠</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="side-row" href="https://github.com/iamxoghks/codex-receipts" target="_blank" rel="noreferrer">
+                      <span class="code-icon">&lt;/&gt;</span>
+                      <span>codex-receipts</span>
+                      <span class="row-desc">Codex 세션 영수증</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="side-row" href="https://github.com/iamxoghks/tufte-viz-codex" target="_blank" rel="noreferrer">
+                      <span class="code-icon">&lt;/&gt;</span>
+                      <span>tufte-viz-codex</span>
+                      <span class="row-desc">분석형 시각화 skill</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="side-row" href="https://github.com/iamxoghks/valentine-memory" target="_blank" rel="noreferrer">
+                      <span class="code-icon">&lt;/&gt;</span>
+                      <span>valentine-memory</span>
+                      <span class="row-desc">사진·오디오 메모리</span>
+                    </a>
+                  </li>
+                </ul>
+              </aside>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="panel-node">
+            <div class="node-grid">
+              <div class="node-card">
+                <span class="node-name">Auth & Session</span>
+                <span>JWT, Spring Security, Redis TTL 기반 Refresh Token과 세션 무효화 흐름을 분리합니다.</span>
+                <span class="tag">Auth</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">Cache & Ranking</span>
+                <span>팔로우, 팔로잉, 즐겨찾기 카운트와 정렬 조회를 Redis ZSet으로 이관합니다.</span>
+                <span class="tag">Redis</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">Search Consistency</span>
+                <span>게시글 저장 트랜잭션과 Elasticsearch 색인을 Outbox 이벤트로 묶어 정합성을 확보합니다.</span>
+                <span class="tag">Search</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">Chat Subscription</span>
+                <span>채팅 목록 inbox 1개와 활성 room 1개로 구독 수를 O(N)에서 O(1) 수준으로 낮춥니다.</span>
+                <span class="tag">WS</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">Service Boundary</span>
+                <span>Auth, Supply, File, Control Service를 API Gateway로 라우팅하고 Swagger/OpenAPI로 문서화합니다.</span>
+                <span class="tag">MSA</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">Reservation Procedure</span>
+                <span>경기 예매, 셔틀 예약, 중복 예약 검증, 잔여 좌석 계산을 SQL 프로시저로 검증합니다.</span>
+                <span class="tag">DB</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="panel-api">
+            <div class="api-grid">
+              <div class="api-row">
+                <span class="api-method">POST</span>
+                <span class="api-path">/api/auth/token/refresh</span>
+                <span class="tag">session</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">GET</span>
+                <span class="api-path">/api/gyms/search?keyword=&amp;mapBounds=</span>
+                <span class="tag">query</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">EVENT</span>
+                <span class="api-path">chat.inbox.summary.updated</span>
+                <span class="tag">stream</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">POST</span>
+                <span class="api-path">/api/supply/orders/{orderId}/shipments</span>
+                <span class="tag">workflow</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">SQL</span>
+                <span class="api-path">reserve_shuttle_bus(user_id, game_id, route_id)</span>
+                <span class="tag">procedure</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="panel-build">
+            <div class="build-grid">
+              <div class="build-row">
+                <span class="build-name">TanTan / 검색 정합성</span>
+                <span>DB 저장과 Elasticsearch 색인이 어긋날 수 있는 지점을 Outbox 이벤트로 보완합니다.</span>
+                <span class="tag">decision</span>
+              </div>
+              <div class="build-row">
+                <span class="build-name">TanTan / 채팅 부하</span>
+                <span>다수 채팅방을 각각 구독하는 구조 대신 inbox + active room 구조로 구독 비용을 줄입니다.</span>
+                <span class="tag">tradeoff</span>
+              </div>
+              <div class="build-row">
+                <span class="build-name">Atlas / 업무 흐름</span>
+                <span>발주 확정 이후 재고 예약·차감, 출하, 반품, 정산까지 이어지는 상태 전이를 설계합니다.</span>
+                <span class="tag">domain</span>
+              </div>
+              <div class="build-row">
+                <span class="build-name">MHiT / 예약 데이터</span>
+                <span>중복 예약, 잔여 좌석, 예약 가능 여부를 SQL 쿼리와 프로시저 기준으로 검증합니다.</span>
+                <span class="tag">data</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="metrics" aria-label="포트폴리오 핵심 지표">
+          <div class="metric">
+            <div class="metric-label">Work Experience</div>
+            <div class="metric-value">VARO Co., Ltd.</div>
+            <div class="metric-small">2020.12-2023.03</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Public Repos</div>
+            <div class="metric-value">10 repos</div>
+            <div class="metric-small">iamxoghks public</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Backend Projects</div>
+            <div class="metric-value">3 <span class="state">backend</span></div>
+            <div class="metric-small">Tantan / Atlas / MHiT</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Domain Range</div>
+            <div class="metric-value">4 domains</div>
+            <div class="metric-small">edtech / gym / SCM / reservation</div>
+          </div>
+        </section>
+
+        <section class="github-activity" aria-label="GitHub contribution activity">
+          <div class="activity-header">
+            <div>
+              <div class="activity-title-row">
+                <div class="terminal-label">GitHub Activity</div>
+                <select class="activity-year" id="activity-year" aria-label="GitHub contribution year">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+              <p class="activity-copy">선택한 연도의 공개 GitHub 기여 그래프를 갱신합니다.</p>
+            </div>
+          </div>
+          <div class="grass-scroll" aria-label="선택 연도 GitHub contributions">
+            <div class="grass-grid" id="github-grass" aria-live="polite">
+              <span class="grass-loading">GitHub contributions loading...</span>
+            </div>
+          </div>
+          <div class="grass-meta">
+            <span id="grass-total">sync pending</span>
+          </div>
+        </section>
+
+        <div class="panel-credit">made by Codex</div>
+      </section>
     </main>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const panels = document.querySelectorAll(".tab-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach((item) => {
+            item.setAttribute("aria-selected", String(item === tab));
+          });
+
+          panels.forEach((panel) => {
+            panel.classList.toggle("active", panel.id === `panel-${target}`);
+          });
+        });
+      });
+
+      const grassGrid = document.querySelector("#github-grass");
+      const grassTotal = document.querySelector("#grass-total");
+      const activityYear = document.querySelector("#activity-year");
+      const contributionsBaseUrl = "https://github-contributions-api.jogruber.de/v4/iamxoghks";
+      const contributionDate = new Intl.DateTimeFormat("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+
+      const renderFallbackGrass = () => {
+        if (!grassGrid || !grassTotal) {
+          return;
+        }
+
+        grassGrid.innerHTML = "";
+        const fallback = document.createElement("span");
+        fallback.className = "grass-fallback";
+        fallback.textContent = "GitHub contribution graph unavailable";
+        grassGrid.append(fallback);
+        grassTotal.textContent = `${activityYear?.value || "GitHub"} sync unavailable`;
+      };
+
+      const renderGitHubGrass = async (year = activityYear?.value || "2026") => {
+        if (!grassGrid || !grassTotal) {
+          return;
+        }
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 8000);
+        const selectedYear = String(year);
+
+        try {
+          const response = await fetch(`${contributionsBaseUrl}?y=${encodeURIComponent(selectedYear)}`, {
+            cache: "no-store",
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error("Contribution API request failed");
+          }
+
+          const payload = await response.json();
+          const contributions = Array.isArray(payload.contributions)
+            ? payload.contributions
+            : [];
+
+          if (!contributions.length) {
+            throw new Error("Contribution API returned empty data");
+          }
+
+          grassGrid.innerHTML = "";
+
+          contributions.forEach((day) => {
+            const cell = document.createElement("span");
+            const count = Number(day.count) || 0;
+            const level = Math.max(0, Math.min(Number(day.level) || 0, 4));
+            const date = new Date(`${day.date}T00:00:00`);
+
+            cell.className = "grass-cell";
+            cell.dataset.level = String(level);
+            cell.title = `${contributionDate.format(date)} · ${count} contributions`;
+            cell.setAttribute("aria-label", cell.title);
+            grassGrid.append(cell);
+          });
+
+          const total = Number(payload.total?.[selectedYear])
+            || contributions.reduce((sum, day) => sum + (Number(day.count) || 0), 0);
+
+          grassTotal.textContent = `${total.toLocaleString("ko-KR")} contributions / ${selectedYear}`;
+        } catch (error) {
+          renderFallbackGrass();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      };
+
+      activityYear?.addEventListener("change", () => {
+        renderGitHubGrass(activityYear.value);
+      });
+
+      renderGitHubGrass();
+    </script>
   </body>
 </html>
