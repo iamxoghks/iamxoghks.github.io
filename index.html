@@ -488,6 +488,12 @@
         text-transform: uppercase;
       }
 
+      .side-title:not(:first-child) {
+        margin-top: 18px;
+        padding-top: 15px;
+        border-top: 1px solid var(--line);
+      }
+
       .side-count {
         color: var(--muted);
         font-size: 12px;
@@ -504,6 +510,11 @@
         font-family: var(--mono);
         font-size: 13px;
         transition: color 160ms ease, transform 160ms ease;
+      }
+
+      .project-list .side-row:last-child,
+      .vibe-list .side-row:last-child {
+        border-bottom: 0;
       }
 
       .side-row:hover {
@@ -534,12 +545,6 @@
         font-size: 12px;
         text-overflow: ellipsis;
         white-space: nowrap;
-      }
-
-      .side-divider {
-        height: 1px;
-        margin: 14px 0 13px;
-        background: var(--line);
       }
 
       .code-icon {
@@ -1074,7 +1079,7 @@
 
               <aside class="side-console" aria-label="프로젝트 노드">
                 <div class="side-title">
-                  <span>Experience</span>
+                  <span>실무 경험</span>
                   <span class="side-count">2020-2023</span>
                 </div>
                 <ul class="project-list">
@@ -1094,10 +1099,8 @@
                   </li>
                 </ul>
 
-                <div class="side-divider"></div>
-
                 <div class="side-title">
-                  <span>Project Nodes</span>
+                  <span>대표 프로젝트</span>
                   <span class="side-count">3</span>
                 </div>
                 <ul class="project-list">
@@ -1124,10 +1127,8 @@
                   </li>
                 </ul>
 
-                <div class="side-divider"></div>
-
                 <div class="side-title">
-                  <span>AI-Assisted Work</span>
+                  <span>AI 작업물</span>
                   <span class="side-count">4</span>
                 </div>
                 <ul class="vibe-list">
