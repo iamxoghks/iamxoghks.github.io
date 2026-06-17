@@ -20,7 +20,10 @@
   - active objectives
   - terminal tabs for Terminal, Runtime Node, API Surface, Build Log
   - project nodes, vibe coding work, metrics, ask runtime, progress bar
-- Kept lower notes and footer inside the same terminal shell.
+- Removed the visible outer terminal border after user feedback; internal elements remain angular/square.
+- Removed outer page background effects, page padding, shell radius, shell shadow, and shell backdrop filter so the viewport starts directly as the terminal surface.
+- Removed duplicated lower notes and footer link repetition.
+- Reworked Build Log tab to show build/process checks instead of repeating project names.
 - Footer still includes `made by Codex`.
 
 ## QA Notes
@@ -35,6 +38,11 @@
   - background CSS no longer references image URLs
   - stack icons load from local `assets/icons/*.svg`
   - API Surface tab click updates selected state
+  - outer shell border width is `0px`
+  - outer shell radius is `0px`, shadow is `none`, page padding is `0px`
+  - body pseudo backgrounds are disabled with `content: none`
+  - stack items, command buttons, tags, and progress segments use `0px` corner radius
+  - Build Log tab no longer repeats project names
   - footer includes `made by Codex`
 
 ## Resume Prompt

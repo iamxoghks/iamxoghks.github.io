@@ -35,8 +35,8 @@
         --orange-dim: rgba(255, 111, 44, 0.16);
         --blue: #72d8ff;
         --blue-dim: rgba(114, 216, 255, 0.12);
-        --radius-xl: 34px;
-        --radius: 8px;
+        --radius-xl: 0;
+        --radius: 0;
         --mono: "JetBrains Mono", "IBM Plex Sans KR", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         --sans: "IBM Plex Sans KR", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         --pad: clamp(18px, 3vw, 46px);
@@ -55,35 +55,16 @@
         min-width: 320px;
         color: var(--text);
         font-family: var(--sans);
-        background:
-          radial-gradient(circle at 50% -8%, rgba(102, 219, 120, 0.09), transparent 38vw),
-          radial-gradient(circle at 88% 18%, rgba(114, 216, 255, 0.035), transparent 26vw),
-          linear-gradient(180deg, #020302 0%, #070a08 48%, #020302 100%);
+        background: #080b09;
         letter-spacing: 0;
       }
 
       body::before {
-        position: fixed;
-        inset: 0;
-        z-index: -3;
-        pointer-events: none;
-        content: "";
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-        background-size: 54px 54px;
-        mask-image: radial-gradient(circle at 50% 18%, rgba(0, 0, 0, 0.65), transparent 72%);
+        content: none;
       }
 
       body::after {
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        pointer-events: none;
-        content: "";
-        background:
-          radial-gradient(circle at 50% 42%, transparent 0 42%, rgba(0, 0, 0, 0.44) 100%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 24%, rgba(0, 0, 0, 0.38));
+        content: none;
       }
 
       a {
@@ -102,24 +83,20 @@
 
       .page {
         display: grid;
-        gap: 18px;
         min-height: 100svh;
-        padding: clamp(12px, 2.2vw, 32px);
+        padding: 0;
       }
 
       .terminal-shell {
-        width: min(100%, 1250px);
-        margin: 0 auto;
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
         overflow: hidden;
-        border: 1px solid rgba(241, 251, 237, 0.18);
+        border: 0;
         border-radius: var(--radius-xl);
-        background:
-          linear-gradient(120deg, rgba(255, 255, 255, 0.045), transparent 25%, rgba(255, 255, 255, 0.028) 62%, transparent),
-          var(--panel);
-        box-shadow:
-          0 42px 120px rgba(0, 0, 0, 0.72),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(12px) saturate(0.9);
+        background: var(--panel-strong);
+        box-shadow: none;
+        backdrop-filter: none;
       }
 
       .terminal-top {
@@ -268,7 +245,7 @@
         min-height: 39px;
         padding: 4px 8px;
         border: 1px solid rgba(209, 223, 204, 0.13);
-        border-radius: 5px;
+        border-radius: 0;
         background: rgba(255, 255, 255, 0.032);
       }
 
@@ -278,7 +255,7 @@
         width: 30px;
         height: 30px;
         border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 5px;
+        border-radius: 0;
         background: rgba(248, 255, 245, 0.88);
       }
 
@@ -626,7 +603,7 @@
         justify-self: end;
         padding: 4px 8px;
         border: 1px solid rgba(102, 219, 120, 0.38);
-        border-radius: 4px;
+        border-radius: 0;
         color: var(--green);
         background: var(--green-dim);
         font-size: 10px;
@@ -723,7 +700,7 @@
         min-height: 31px;
         padding: 0 12px;
         border: 1px solid var(--line-strong);
-        border-radius: 4px;
+        border-radius: 0;
         background: rgba(255, 255, 255, 0.02);
         color: var(--muted);
         font-family: var(--mono);
@@ -765,7 +742,7 @@
       .progress-segment {
         height: 18px;
         border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 2px;
+        border-radius: 0;
         background: rgba(255, 255, 255, 0.07);
       }
 
@@ -783,94 +760,21 @@
         text-align: right;
       }
 
-      .details {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 1px;
-        border-top: 1px solid var(--line);
-        background: var(--line);
-      }
-
-      .detail-panel {
-        min-width: 0;
-        padding: 27px clamp(22px, 3vw, 44px) 30px;
-        background: rgba(8, 11, 9, 0.62);
-      }
-
-      .detail-panel h2 {
-        color: var(--text);
-        font-family: var(--mono);
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-      }
-
-      .detail-list {
-        display: grid;
-        gap: 16px;
-        margin: 19px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .detail-item {
-        display: grid;
-        gap: 6px;
-        font-family: var(--mono);
-      }
-
-      .detail-item strong {
-        color: var(--green);
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .detail-item span {
-        color: var(--text-soft);
-        font-size: 13px;
-        line-height: 1.62;
-      }
-
       .footer {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         gap: 18px;
-        padding: 20px clamp(22px, 3vw, 44px) 24px;
+        padding: 18px clamp(22px, 3vw, 44px) 22px;
         border-top: 1px solid var(--line);
         color: var(--muted);
         font-family: var(--mono);
         font-size: 12px;
       }
 
-      .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .footer a:hover {
-        color: var(--green);
-      }
-
       @media (prefers-reduced-motion: no-preference) {
-        .terminal-shell {
-          animation: shell-in 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
         .progress-segment.hot {
           animation: pulse-hot 1600ms ease-in-out infinite;
-        }
-
-        @keyframes shell-in {
-          from {
-            opacity: 0;
-            transform: translateY(18px) scale(0.985);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
         }
 
         @keyframes pulse-hot {
@@ -886,8 +790,7 @@
 
       @media (max-width: 1080px) {
         .intro-grid,
-        .terminal-grid,
-        .details {
+        .terminal-grid {
           grid-template-columns: 1fr;
         }
 
@@ -931,15 +834,15 @@
 
       @media (max-width: 720px) {
         :root {
-          --radius-xl: 22px;
+          --radius-xl: 0;
         }
 
         .page {
-          padding: 12px;
+          padding: 0;
         }
 
         .terminal-shell {
-          min-height: calc(100svh - 24px);
+          min-height: 100svh;
         }
 
         .terminal-top {
@@ -1012,8 +915,7 @@
         }
 
         .footer {
-          align-items: flex-start;
-          flex-direction: column;
+          justify-content: flex-start;
         }
       }
 
@@ -1343,24 +1245,24 @@
           <section class="tab-panel" id="panel-build">
             <div class="build-grid">
               <div class="build-row">
-                <span class="build-name">Tantan BE</span>
-                <span>매칭 서비스 백엔드에서 도메인 모델, API, 데이터 흐름을 정리했습니다.</span>
-                <span class="tag">merged</span>
+                <span class="build-name">compile:api-contract</span>
+                <span>요청/응답 스키마, 예외 포맷, 인증 경계를 한 번에 검증합니다.</span>
+                <span class="tag">passed</span>
               </div>
               <div class="build-row">
-                <span class="build-name">Atlas BE</span>
-                <span>데이터 플랫폼 백엔드의 조회/검색/저장 흐름을 서비스 단위로 나눴습니다.</span>
-                <span class="tag">reviewed</span>
+                <span class="build-name">test:cache-policy</span>
+                <span>Redis TTL, fallback, 무효화 흐름이 조회 부하와 맞는지 확인합니다.</span>
+                <span class="tag">stable</span>
               </div>
               <div class="build-row">
-                <span class="build-name">MHiT</span>
-                <span>헬스케어 데이터 프로젝트에서 MySQL 기반 저장 구조와 기능 요구를 연결했습니다.</span>
-                <span class="tag">archived</span>
+                <span class="build-name">index:search-documents</span>
+                <span>Elasticsearch 매핑, analyzer, 색인 갱신 주기를 재검토합니다.</span>
+                <span class="tag">running</span>
               </div>
               <div class="build-row">
-                <span class="build-name">noa-sudoku</span>
-                <span>iOS 출시/운영 중인 앱의 public 운영 사이트를 포트폴리오 표면으로 연결했습니다.</span>
-                <span class="tag">live</span>
+                <span class="build-name">trace:event-flow</span>
+                <span>Kafka retry, 멱등성, DLQ 처리 기준을 이벤트 흐름에 맞춥니다.</span>
+                <span class="tag">queued</span>
               </div>
             </div>
           </section>
@@ -1421,42 +1323,7 @@
           </div>
         </section>
 
-        <section class="details" aria-label="작업 방식">
-          <div class="detail-panel">
-            <h2>System Notes</h2>
-            <ul class="detail-list">
-              <li class="detail-item">
-                <strong>탐구하는 개발자</strong>
-                <span>문제를 빠르게 닫기보다 원인, 재현 조건, 설계 대안을 로그처럼 남깁니다.</span>
-              </li>
-              <li class="detail-item">
-                <strong>포기하지 않는 개발자</strong>
-                <span>실패한 테스트와 깨진 배포를 다음 커밋의 입력으로 바꾸는 과정을 중요하게 봅니다.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="detail-panel">
-            <h2>App Store Link</h2>
-            <ul class="detail-list">
-              <li class="detail-item">
-                <strong>noa-sudoku</strong>
-                <span>iOS 앱은 private로 운영 중이며, public 운영 사이트와 App Store 링크를 함께 제공합니다.</span>
-              </li>
-              <li class="detail-item">
-                <strong><a href="https://apple.co/4ed2g25" target="_blank" rel="noreferrer">apple.co/4ed2g25</a></strong>
-                <span>실제 출시 및 운영 경험을 보여주는 바이브코딩 작업물입니다.</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
         <footer class="footer">
-          <div class="footer-links">
-            <a href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://github.com/beyond-sw-camp/be23-2nd-team1-tantan-be" target="_blank" rel="noreferrer">Tantan BE</a>
-            <a href="https://github.com/beyond-sw-camp/be23-fin-team1-Atlas-be" target="_blank" rel="noreferrer">Atlas BE</a>
-            <a href="https://github.com/beyond-sw-camp/be23-1st-wow-MHiT" target="_blank" rel="noreferrer">MHiT</a>
-          </div>
           <div>made by Codex</div>
         </footer>
       </section>
