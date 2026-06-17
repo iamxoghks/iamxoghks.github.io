@@ -107,7 +107,7 @@
         border-bottom: 1px solid var(--line);
         color: var(--green);
         font-family: var(--mono);
-        font-size: 14px;
+        font-size: 15px;
       }
 
       .prompt {
@@ -157,7 +157,7 @@
       }
 
       h1 {
-        font-size: clamp(42px, 4vw, 62px);
+        font-size: clamp(46px, 4.2vw, 66px);
         font-weight: 700;
         line-height: 1.04;
         letter-spacing: 0;
@@ -166,7 +166,7 @@
       .handle {
         color: var(--green);
         font-family: var(--mono);
-        font-size: clamp(19px, 1.8vw, 27px);
+        font-size: clamp(21px, 1.9vw, 29px);
       }
 
       .github-link {
@@ -177,7 +177,7 @@
         margin-top: 18px;
         color: var(--green);
         font-family: var(--mono);
-        font-size: 15px;
+        font-size: 16px;
         transition: color 160ms ease, transform 160ms ease;
       }
 
@@ -193,11 +193,11 @@
       }
 
       .role-copy {
-        width: min(100%, 500px);
+        width: min(100%, 560px);
         margin-top: 18px;
         color: var(--text-soft);
         font-family: var(--mono);
-        font-size: 15px;
+        font-size: 17px;
         line-height: 1.62;
       }
 
@@ -213,7 +213,7 @@
       .terminal-label {
         color: var(--green);
         font-family: var(--mono);
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -238,7 +238,7 @@
         border-bottom: 1px solid rgba(204, 213, 199, 0.18);
         color: var(--green);
         font-family: var(--mono);
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -246,7 +246,7 @@
 
       .stack-group-count {
         color: var(--muted);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
       }
 
@@ -259,11 +259,11 @@
 
       .stack-item {
         display: grid;
-        grid-template-columns: 28px 1fr;
+        grid-template-columns: 30px 1fr;
         align-items: center;
         min-width: 0;
         gap: 10px;
-        min-height: 36px;
+        min-height: 40px;
         padding: 5px 0;
         border: 0;
         border-bottom: 1px solid rgba(209, 223, 204, 0.12);
@@ -274,8 +274,8 @@
       .stack-logo {
         display: grid;
         place-items: center;
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
         border: 0;
         border-radius: 0;
         background: transparent;
@@ -283,8 +283,8 @@
 
       .stack-logo img {
         display: block;
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
         object-fit: contain;
       }
 
@@ -293,7 +293,7 @@
         overflow: hidden;
         color: var(--text);
         font-family: var(--mono);
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -304,7 +304,7 @@
         overflow: hidden;
         color: var(--muted);
         font-family: var(--mono);
-        font-size: 11px;
+        font-size: 12px;
         line-height: 1.2;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -331,12 +331,12 @@
 
       .focus-item {
         display: grid;
-        grid-template-columns: 90px minmax(0, 1fr);
-        gap: 16px;
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 18px;
         align-items: start;
         min-width: 0;
         color: var(--text-soft);
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.55;
       }
 
@@ -372,7 +372,7 @@
         background: transparent;
         color: var(--muted);
         font-family: var(--mono);
-        font-size: 15px;
+        font-size: 17px;
         letter-spacing: 0.06em;
         cursor: pointer;
         text-transform: uppercase;
@@ -420,7 +420,7 @@
       .state {
         color: var(--green);
         font-family: var(--mono);
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 700;
         text-transform: uppercase;
       }
@@ -431,7 +431,7 @@
 
       .log-title {
         color: var(--green);
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.04em;
       }
@@ -444,20 +444,22 @@
 
       .log-line {
         display: grid;
-        grid-template-columns: minmax(86px, 0.16fr) 130px 1fr;
-        gap: 15px;
+        grid-template-columns: minmax(96px, 0.16fr) minmax(180px, 0.24fr) minmax(0, 1fr);
+        gap: 22px;
         min-width: 0;
         color: var(--text-soft);
-        font-size: 13px;
-        line-height: 1.42;
+        font-size: 15px;
+        line-height: 1.5;
       }
 
       .log-time {
         color: var(--muted);
+        white-space: nowrap;
       }
 
       .log-level {
         color: var(--green);
+        white-space: nowrap;
       }
 
       .log-msg {
@@ -482,7 +484,7 @@
         margin-bottom: 12px;
         color: var(--green);
         font-family: var(--mono);
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -496,7 +498,7 @@
 
       .side-count {
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .side-row {
@@ -504,11 +506,11 @@
         grid-template-columns: 14px minmax(0, 1fr) auto;
         gap: 10px;
         align-items: center;
-        min-height: 38px;
+        min-height: 42px;
         border-bottom: 1px solid rgba(209, 223, 204, 0.11);
         color: var(--text-soft);
         font-family: var(--mono);
-        font-size: 13px;
+        font-size: 15px;
         transition: color 160ms ease, transform 160ms ease;
       }
 
@@ -542,14 +544,14 @@
       .row-desc {
         overflow: hidden;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
 
       .code-icon {
         color: var(--green);
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .api-grid,
@@ -571,7 +573,7 @@
         border-bottom: 1px solid rgba(209, 223, 204, 0.12);
         color: var(--text-soft);
         font-family: var(--mono);
-        font-size: 14px;
+        font-size: 15px;
       }
 
       .api-method {
@@ -592,7 +594,7 @@
         border-radius: 0;
         color: var(--green);
         background: var(--green-dim);
-        font-size: 11px;
+        font-size: 12px;
         text-transform: uppercase;
       }
 
@@ -616,7 +618,7 @@
 
       .metric-label {
         color: var(--green);
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -625,14 +627,14 @@
       .metric-value {
         margin-top: 5px;
         color: var(--text);
-        font-size: clamp(18px, 1.8vw, 24px);
+        font-size: clamp(20px, 2vw, 27px);
         line-height: 1.2;
       }
 
       .metric-small {
         margin-top: 5px;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .progress-section {
@@ -645,7 +647,7 @@
         justify-content: space-between;
         gap: 20px;
         color: var(--text);
-        font-size: 16px;
+        font-size: 17px;
       }
 
       .progress-caption span:last-child {
@@ -676,7 +678,7 @@
         padding: 9px clamp(22px, 3vw, 44px) 18px;
         color: var(--muted);
         font-family: var(--mono);
-        font-size: 13px;
+        font-size: 14px;
         text-align: right;
       }
 
@@ -779,7 +781,7 @@
         .log-line {
           grid-template-columns: 1fr;
           gap: 8px;
-          font-size: 12px;
+          font-size: 14px;
         }
 
         .row-desc,
@@ -807,11 +809,11 @@
 
       @media (max-width: 440px) {
         h1 {
-          font-size: 40px;
+          font-size: 42px;
         }
 
         .handle {
-          font-size: 18px;
+          font-size: 19px;
         }
 
         .stack-grid {
@@ -821,7 +823,7 @@
         .tab {
           padding-right: 18px;
           padding-left: 18px;
-          font-size: 13px;
+          font-size: 14px;
         }
 
         .runtime-panels {
