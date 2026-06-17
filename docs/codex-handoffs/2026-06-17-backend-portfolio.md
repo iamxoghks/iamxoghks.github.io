@@ -24,7 +24,13 @@
 - Removed outer page background effects, page padding, shell radius, shell shadow, and shell backdrop filter so the viewport starts directly as the terminal surface.
 - Removed duplicated lower notes and footer link repetition.
 - Reworked Build Log tab to show build/process checks instead of repeating project names.
-- Footer still includes `made by Codex`.
+- Replaced the separated footer row with plain `made by Codex` text at the bottom of the terminal flow.
+- Refreshed portfolio copy from GitHub profile/repository data read on 2026-06-17:
+  - GitHub profile public repo count
+  - TanTan README: map-based gym discovery, JWT/Spring Security, Redis, Elasticsearch, WebSocket optimization
+  - Atlas README: SCM order/inventory/shipment/return/settlement flow, API Gateway, service split, Redis/Elasticsearch/Kafka
+  - MHiT README: baseball ticketing plus shuttle reservation DB project, ERD, SQL query/procedure validation
+  - Vibe work README summaries for Noa Sudoku, codex-receipts, tufte-viz-codex, valentine-memory
 
 ## QA Notes
 
@@ -43,8 +49,8 @@
   - body pseudo backgrounds are disabled with `content: none`
   - stack items, command buttons, tags, and progress segments use `0px` corner radius
   - Build Log tab no longer repeats project names
-  - footer includes `made by Codex`
+  - no `footer` element remains; `made by Codex` is plain bottom text via `.panel-credit`
 
 ## Resume Prompt
 
-Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Runtime Field Terminal direction, keep stack icons loaded from local SVG assets, and verify with Codex in-app browser before handoff.
+Continue polishing `/Users/iamxoghks/Documents/GitHub/iamxoghks.github.io` on branch `feat/backend-portfolio-pr-log`. Preserve the terminal-first Runtime Field Terminal direction, keep stack icons loaded from local SVG assets, keep the bottom credit as plain text rather than a divided footer row, and verify with Codex in-app browser before handoff.

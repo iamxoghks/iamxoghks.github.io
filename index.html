@@ -550,8 +550,10 @@
       }
 
       .row-desc {
+        overflow: hidden;
         color: var(--muted);
         font-size: 11px;
+        text-overflow: ellipsis;
         white-space: nowrap;
       }
 
@@ -753,23 +755,11 @@
       }
 
       .panel-credit {
-        padding: 9px clamp(22px, 3vw, 44px) 17px;
+        padding: 9px clamp(22px, 3vw, 44px) 18px;
         color: var(--muted);
         font-family: var(--mono);
         font-size: 12px;
         text-align: right;
-      }
-
-      .footer {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 18px;
-        padding: 18px clamp(22px, 3vw, 44px) 22px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 12px;
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -913,10 +903,6 @@
         .progress-segment {
           height: 19px;
         }
-
-        .footer {
-          justify-content: flex-start;
-        }
       }
 
       @media (max-width: 440px) {
@@ -978,8 +964,9 @@
             </a>
             <p class="role-copy">
               <strong>Backend Engineer</strong><br>
-              시스템 설계, API, 인프라, 성능 최적화를 끝까지 파고드는 개발자.
-              궁금증을 작업 단위로 쪼개고, 실패한 로그를 다음 설계의 입력으로 남깁니다.
+              GitHub 공개 레포 10개를 기반으로 Java/Spring 백엔드, SCM 도메인,
+              검색·캐시·이벤트 흐름을 구현해 온 개발자. 궁금증을 로그와 API 계약으로
+              쪼개고, 실패한 지점을 다음 설계의 입력으로 남깁니다.
             </p>
 
             <div class="stack-area" aria-label="주요 기술 스택">
@@ -1036,22 +1023,22 @@
             <ul class="objective-list">
               <li class="objective">
                 <span class="box">✓</span>
-                <span>API 설계와 계약 안정성</span>
+                <span>TanTan 검색·채팅 병목 정리</span>
                 <span class="objective-status">resolved</span>
               </li>
               <li class="objective">
                 <span class="box">✓</span>
-                <span>Redis 기반 캐시 전략</span>
+                <span>Atlas SCM 흐름과 API 문서화</span>
                 <span class="objective-status">resolved</span>
               </li>
               <li class="objective current">
                 <span class="box"></span>
-                <span>검색 인덱싱과 응답 개선</span>
+                <span>GitHub Pages 포트폴리오 갱신</span>
                 <span class="objective-status">running</span>
               </li>
               <li class="objective dim">
                 <span class="box"></span>
-                <span>Kafka 이벤트 파이프라인</span>
+                <span>바이브코딩 산출물 운영 기록</span>
                 <span class="objective-status">queued</span>
               </li>
             </ul>
@@ -1080,44 +1067,44 @@
                   <div class="endpoint">
                     <dt>Internal Node Address</dt>
                     <dd>
-                      <span>10.22.14.9:8080</span>
-                      <span class="state">healthy</span>
+                      <span>github.com/iamxoghks</span>
+                      <span class="state">10 public repos</span>
                     </dd>
                   </div>
                 </dl>
 
                 <div class="log-block">
-                  <div class="log-title">Build Log / 실시간 빌드 출력</div>
+                  <div class="log-title">GitHub Read Log / README 기반 요약</div>
                   <div class="log-lines">
                     <div class="log-line">
                       <span class="log-time">09:41:12</span>
-                      <span class="log-level">[INFO]</span>
-                      <span class="log-msg">API 경계 검증 완료 - users, auth, payments, search</span>
+                      <span class="log-level">[TANTAN]</span>
+                      <span class="log-msg">지도 기반 헬스장 탐색, 예약, 1:1 상담 채팅, 운동 기록 백엔드</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">09:41:13</span>
                       <span class="log-level">[CACHE]</span>
-                      <span class="log-msg">Redis read-through / write-back 전략 적용</span>
+                      <span class="log-msg">Refresh Token TTL, 세션 무효화, ZSet 기반 팔로우/즐겨찾기 정렬</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">09:41:14</span>
                       <span class="log-level">[INDEX]</span>
-                      <span class="log-msg">Elasticsearch 매핑과 검색 조건 정리</span>
+                      <span class="log-msg">게시글 저장과 Elasticsearch 색인 정합성을 Outbox 패턴으로 보강</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">09:41:15</span>
-                      <span class="log-level">[EVENT]</span>
-                      <span class="log-msg">Kafka topic: domain.events, retry policy 점검</span>
+                      <span class="log-level">[ATLAS]</span>
+                      <span class="log-msg">발주·재고·출하·반품·정산을 하나의 SCM 업무 흐름으로 연결</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">09:41:17</span>
-                      <span class="log-level">[BUILD]</span>
-                      <span class="log-msg">Gradle compile, test, jar 생성 완료</span>
+                      <span class="log-level">[GATEWAY]</span>
+                      <span class="log-msg">Auth, Supply, File, Control Service를 API Gateway 기준으로 분리</span>
                     </div>
                     <div class="log-line">
                       <span class="log-time">09:41:22</span>
-                      <span class="log-level">[DEPLOY]</span>
-                      <span class="log-msg">Blue/Green 배포 대기 중 - health probe stable</span>
+                      <span class="log-level">[MHIT]</span>
+                      <span class="log-msg">야구 예매와 셔틀 예약을 ERD, SQL 쿼리, 프로시저로 검증</span>
                     </div>
                   </div>
                 </div>
@@ -1133,21 +1120,21 @@
                     <a class="side-row" href="https://github.com/beyond-sw-camp/be23-2nd-team1-tantan-be" target="_blank" rel="noreferrer">
                       <span class="node-dot"></span>
                       <span>Tantan BE</span>
-                      <span class="row-desc">소셜 매칭 백엔드</span>
+                      <span class="row-desc">지도/채팅/운동기록</span>
                     </a>
                   </li>
                   <li>
                     <a class="side-row" href="https://github.com/beyond-sw-camp/be23-fin-team1-Atlas-be" target="_blank" rel="noreferrer">
                       <span class="node-dot"></span>
                       <span>Atlas BE</span>
-                      <span class="row-desc">데이터 플랫폼</span>
+                      <span class="row-desc">SCM 발주·재고·출하</span>
                     </a>
                   </li>
                   <li>
                     <a class="side-row" href="https://github.com/beyond-sw-camp/be23-1st-wow-MHiT" target="_blank" rel="noreferrer">
                       <span class="node-dot"></span>
                       <span>MHiT</span>
-                      <span class="row-desc">헬스케어 데이터</span>
+                      <span class="row-desc">야구 예매·셔틀 DB</span>
                     </a>
                   </li>
                 </ul>
@@ -1163,28 +1150,28 @@
                     <a class="side-row" href="https://github.com/noa-sudoku/noa-sudoku.github.io" target="_blank" rel="noreferrer">
                       <span class="code-icon">&lt;/&gt;</span>
                       <span>noa-sudoku</span>
-                      <span class="row-desc">iOS 운영 사이트</span>
+                      <span class="row-desc">광고 없는 iOS 스도쿠</span>
                     </a>
                   </li>
                   <li>
                     <a class="side-row" href="https://github.com/iamxoghks/codex-receipts" target="_blank" rel="noreferrer">
                       <span class="code-icon">&lt;/&gt;</span>
                       <span>codex-receipts</span>
-                      <span class="row-desc">영수증 OCR</span>
+                      <span class="row-desc">Codex 세션 영수증</span>
                     </a>
                   </li>
                   <li>
                     <a class="side-row" href="https://github.com/iamxoghks/tufte-viz-codex" target="_blank" rel="noreferrer">
                       <span class="code-icon">&lt;/&gt;</span>
                       <span>tufte-viz-codex</span>
-                      <span class="row-desc">시각화 도구</span>
+                      <span class="row-desc">분석형 시각화 skill</span>
                     </a>
                   </li>
                   <li>
                     <a class="side-row" href="https://github.com/iamxoghks/valentine-memory" target="_blank" rel="noreferrer">
                       <span class="code-icon">&lt;/&gt;</span>
                       <span>valentine-memory</span>
-                      <span class="row-desc">추억 저장소</span>
+                      <span class="row-desc">사진·오디오 메모리</span>
                     </a>
                   </li>
                 </ul>
@@ -1195,24 +1182,34 @@
           <section class="tab-panel" id="panel-node">
             <div class="node-grid">
               <div class="node-card">
-                <span class="node-name">service/auth/AuthHandler.java</span>
-                <span>인증 흐름, 토큰 검증, 예외 응답을 API 계약 기준으로 분리합니다.</span>
-                <span class="tag">Spring</span>
+                <span class="node-name">tantan/auth-security</span>
+                <span>JWT, Spring Security, Redis TTL 기반 Refresh Token과 세션 무효화 흐름을 분리합니다.</span>
+                <span class="tag">Auth</span>
               </div>
               <div class="node-card">
-                <span class="node-name">infra/cache/RedisPolicy.java</span>
-                <span>조회 부하와 정합성 요구를 나눠 TTL, 무효화, fallback을 설계합니다.</span>
+                <span class="node-name">tantan/redis-zset</span>
+                <span>팔로우, 팔로잉, 즐겨찾기 카운트와 정렬 조회를 Redis ZSet으로 이관합니다.</span>
                 <span class="tag">Redis</span>
               </div>
               <div class="node-card">
-                <span class="node-name">search/index/SearchDocument.java</span>
-                <span>검색 조건, analyzer, 색인 갱신 주기를 기능 요구와 연결합니다.</span>
-                <span class="tag">Elastic</span>
+                <span class="node-name">tantan/search-outbox</span>
+                <span>게시글 저장 트랜잭션과 Elasticsearch 색인을 Outbox 이벤트로 묶어 정합성을 확보합니다.</span>
+                <span class="tag">Search</span>
               </div>
               <div class="node-card">
-                <span class="node-name">event/domain-events.topic</span>
-                <span>재시도, 멱등성, DLQ를 고려해 이벤트 기반 흐름을 안정화합니다.</span>
-                <span class="tag">Kafka</span>
+                <span class="node-name">tantan/chat-inbox</span>
+                <span>채팅 목록 inbox 1개와 활성 room 1개로 구독 수를 O(N)에서 O(1) 수준으로 낮춥니다.</span>
+                <span class="tag">WS</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">atlas/service-boundary</span>
+                <span>Auth, Supply, File, Control Service를 API Gateway로 라우팅하고 Swagger/OpenAPI로 문서화합니다.</span>
+                <span class="tag">MSA</span>
+              </div>
+              <div class="node-card">
+                <span class="node-name">mhit/sql-procedure</span>
+                <span>경기 예매, 셔틀 예약, 중복 예약 검증, 잔여 좌석 계산을 SQL 프로시저로 검증합니다.</span>
+                <span class="tag">DB</span>
               </div>
             </div>
           </section>
@@ -1221,23 +1218,28 @@
             <div class="api-grid">
               <div class="api-row">
                 <span class="api-method">POST</span>
-                <span class="api-path">/api/auth/session</span>
-                <span class="tag">contract</span>
+                <span class="api-path">/api/auth/token/refresh</span>
+                <span class="tag">Tantan</span>
               </div>
               <div class="api-row">
                 <span class="api-method">GET</span>
-                <span class="api-path">/api/projects/{projectId}/metrics</span>
-                <span class="tag">observability</span>
-              </div>
-              <div class="api-row">
-                <span class="api-method">PATCH</span>
-                <span class="api-path">/api/search/index-policy</span>
-                <span class="tag">optimization</span>
+                <span class="api-path">/api/gyms/search?keyword=&amp;mapBounds=</span>
+                <span class="tag">Search</span>
               </div>
               <div class="api-row">
                 <span class="api-method">EVENT</span>
-                <span class="api-path">domain.events.project.updated</span>
-                <span class="tag">async</span>
+                <span class="api-path">chat.inbox.summary.updated</span>
+                <span class="tag">WebSocket</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">POST</span>
+                <span class="api-path">/api/supply/orders/{orderId}/shipments</span>
+                <span class="tag">Atlas</span>
+              </div>
+              <div class="api-row">
+                <span class="api-method">SQL</span>
+                <span class="api-path">reserve_shuttle_bus(user_id, game_id, route_id)</span>
+                <span class="tag">MHiT</span>
               </div>
             </div>
           </section>
@@ -1245,24 +1247,24 @@
           <section class="tab-panel" id="panel-build">
             <div class="build-grid">
               <div class="build-row">
-                <span class="build-name">compile:api-contract</span>
-                <span>요청/응답 스키마, 예외 포맷, 인증 경계를 한 번에 검증합니다.</span>
-                <span class="tag">passed</span>
+                <span class="build-name">read:tantan-readme</span>
+                <span>지도 탐색, JWT 인증, Redis, Elasticsearch, WebSocket 최적화 근거를 반영합니다.</span>
+                <span class="tag">indexed</span>
               </div>
               <div class="build-row">
-                <span class="build-name">test:cache-policy</span>
-                <span>Redis TTL, fallback, 무효화 흐름이 조회 부하와 맞는지 확인합니다.</span>
-                <span class="tag">stable</span>
+                <span class="build-name">read:atlas-readme</span>
+                <span>발주·재고·출하·반품·정산 도메인과 Gateway/Service 경계를 반영합니다.</span>
+                <span class="tag">indexed</span>
               </div>
               <div class="build-row">
-                <span class="build-name">index:search-documents</span>
-                <span>Elasticsearch 매핑, analyzer, 색인 갱신 주기를 재검토합니다.</span>
-                <span class="tag">running</span>
+                <span class="build-name">read:mhit-readme</span>
+                <span>야구 예매, 셔틀 예약, ERD, SQL 프로시저 검증 관점을 반영합니다.</span>
+                <span class="tag">indexed</span>
               </div>
               <div class="build-row">
-                <span class="build-name">trace:event-flow</span>
-                <span>Kafka retry, 멱등성, DLQ 처리 기준을 이벤트 흐름에 맞춥니다.</span>
-                <span class="tag">queued</span>
+                <span class="build-name">read:vibe-work</span>
+                <span>Noa Sudoku, codex-receipts, tufte-viz-codex, valentine-memory의 README를 요약합니다.</span>
+                <span class="tag">synced</span>
               </div>
             </div>
           </section>
@@ -1270,62 +1272,60 @@
 
         <section class="metrics" aria-label="런타임 상태 지표">
           <div class="metric">
-            <div class="metric-label">AI Engine</div>
-            <div class="metric-value">Assistant Runtime</div>
-            <div class="metric-small">v1.3.2</div>
+            <div class="metric-label">GitHub Profile</div>
+            <div class="metric-value">10 repos</div>
+            <div class="metric-small">iamxoghks public</div>
           </div>
           <div class="metric">
-            <div class="metric-label">Session Memory</div>
-            <div class="metric-value">23%</div>
+            <div class="metric-label">Primary BE</div>
+            <div class="metric-value">Java</div>
             <svg class="sparkline" viewBox="0 0 120 28" aria-hidden="true">
               <path d="M1 21 L8 19 L15 20 L22 16 L29 18 L36 12 L43 15 L50 11 L57 13 L64 9 L71 12 L78 8 L85 10 L92 7 L99 11 L106 6 L119 5" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
           </div>
           <div class="metric">
-            <div class="metric-label">Modified Files</div>
-            <div class="metric-value">37 <span class="state">+14</span></div>
-            <div class="metric-small">service / infra / docs</div>
+            <div class="metric-label">Project Nodes</div>
+            <div class="metric-value">3 <span class="state">backend</span></div>
+            <div class="metric-small">Tantan / Atlas / MHiT</div>
           </div>
           <div class="metric">
-            <div class="metric-label">Latency</div>
-            <div class="metric-value">38ms</div>
+            <div class="metric-label">Vibe Work</div>
+            <div class="metric-value">4 repos</div>
             <svg class="sparkline" viewBox="0 0 120 28" aria-hidden="true">
               <path d="M2 18 L9 17 L16 19 L23 12 L30 14 L37 15 L44 10 L51 12 L58 9 L65 13 L72 11 L79 15 L86 9 L93 10 L100 8 L107 11 L118 7" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
           </div>
           <div class="metric">
-            <div class="metric-label">Build Status</div>
-            <div class="metric-value">Running <span class="runtime-dot" aria-hidden="true"></span></div>
-            <div class="metric-small">portfolio deploy ready</div>
+            <div class="metric-label">Latest Sync</div>
+            <div class="metric-value">2026.06.17</div>
+            <div class="metric-small">GitHub API read</div>
           </div>
         </section>
 
         <section class="runtime-actions">
           <div class="ask-box">
             <div class="ask-label">Ask Runtime</div>
-            <div class="ask-field" id="ask-field">Create an API endpoint for portfolio inspection</div>
+            <div class="ask-field" id="ask-field">Summarize backend evidence from GitHub README files</div>
           </div>
           <div class="quick-actions" aria-label="빠른 명령">
-            <button class="command-button" type="button" data-command="Analyze API boundaries">Analyze API</button>
-            <button class="command-button" type="button" data-command="Inspect Redis cache policy">Inspect cache</button>
-            <button class="command-button" type="button" data-command="Trace Kafka event flow">Trace event</button>
+            <button class="command-button" type="button" data-command="Trace TanTan search and chat decisions">Trace TanTan</button>
+            <button class="command-button" type="button" data-command="Inspect Atlas SCM service boundaries">Inspect Atlas</button>
+            <button class="command-button" type="button" data-command="Review MHiT reservation procedures">Review MHiT</button>
             <a class="command-button" href="https://github.com/iamxoghks" target="_blank" rel="noreferrer">Open GitHub</a>
           </div>
         </section>
 
         <section class="progress-section">
           <div class="progress-caption">
-            <span>환경 설정 중: /workspace/runtime</span>
-            <span>40%</span>
+            <span>GitHub README 인덱싱 완료: 8 repositories</span>
+            <span>fresh</span>
           </div>
           <div class="progress-track" aria-hidden="true">
             <span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment hot"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span><span class="progress-segment"></span>
           </div>
         </section>
 
-        <footer class="footer">
-          <div>made by Codex</div>
-        </footer>
+        <div class="panel-credit">made by Codex</div>
       </section>
     </main>
 
